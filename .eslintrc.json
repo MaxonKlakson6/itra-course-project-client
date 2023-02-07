@@ -8,7 +8,8 @@
         "airbnb",
         "airbnb-typescript",
         "airbnb/hooks",
-        "plugin:@typescript-eslint/recommended"
+        "plugin:@typescript-eslint/recommended",
+        "plugin:prettier/recommended"
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
@@ -21,7 +22,8 @@
     },
     "plugins": [
         "react",
-        "@typescript-eslint"
+        "@typescript-eslint",
+        "prettier"
     ],
     "settings": {
         "import/resolver": {
@@ -29,6 +31,9 @@
         }
     },
     "rules": {
+        "max-len": ["error", {
+            "code": 80
+        }],
         "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
         "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
         "import/order": [
@@ -53,6 +58,10 @@
         "arrow-body-style": ["error", "as-needed"],
         "react/button-has-type": "off",
         "import/extensions": "off",
-        "react/react-in-jsx-scope": "off"
+        "react/react-in-jsx-scope": "off",
+        "import/prefer-default-export": "off",
+        "react/function-component-definition": "off",
+        "prettier/prettier": "off",
+        "react/require-default-props": "off"
     }
 }
