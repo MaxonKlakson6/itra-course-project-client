@@ -1,7 +1,4 @@
-import {
-  ContentHolder,
-  Wrapper,
-} from 'src/pages/SignUp/components/SignUpLayout/styles';
+import { ContentHolder, Wrapper } from 'src/static/styles/authStyles';
 import SignUpForm from 'src/pages/SignUp/components/SignUpForm';
 import AuthBanner from 'src/components/AuthBanner';
 import { SIGN_UP_TEXT } from 'src/constants/signUpText';

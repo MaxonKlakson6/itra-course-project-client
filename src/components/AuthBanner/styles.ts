@@ -2,9 +2,11 @@ import styled from '@emotion/styled';
 import { Button as MuiButton } from '@mui/material';
 import { Link } from 'react-router-dom';
 
+import { COLORS } from 'src/static/colors';
+
 export const Wrapper = styled.div`
   width: 50%;
-  background-color: #56b280;
+  background-color: ${COLORS.GREEN};
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -36,6 +38,6 @@ export const Button = styled(MuiButton)`
 
   &:hover {
     background-color: #fff;
-    color: #56b280;
+    color: ${COLORS.GREEN};
   }
 `;

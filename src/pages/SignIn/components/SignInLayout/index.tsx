@@ -1,7 +1,4 @@
-import {
-  ContentHolder,
-  Wrapper,
-} from 'src/pages/SignIn/components/SignInLayout/styles';
+import { ContentHolder, Wrapper } from 'src/static/styles/authStyles';
 import AuthBanner from 'src/components/AuthBanner';
 import { SIGN_IN_TEXT } from 'src/constants/signInText';
 import { ROUTE_NAMES } from 'src/router/routeNames';

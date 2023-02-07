@@ -1,4 +1,4 @@
-import { Button, Form } from 'src/pages/SignIn/components/SignInForm/styles';
+import { Button, Form } from 'src/static/styles/authStyles';
 import InputWithError from 'src/components/InputWithError';
 import { AuthProps } from 'src/types/authProps';
 import { SignInFormValues } from 'src/pages/SignIn/types/formValues';
