@@ -8,6 +8,7 @@ import { useSignUpMutation } from 'src/api/authApi';
 import { createPosition } from 'src/helpers/createPosition';
 import { signUpSchema } from 'src/validation/signUpSchema';
 import { ROUTE_NAMES } from 'src/router/routeNames';
+import { SignUpFormValues } from 'src/pages/SignUp/types/signUpFormValues';
 
 const SignUpContainer = (): JSX.Element => {
   const navigate = useNavigate();
@@ -21,7 +22,7 @@ const SignUpContainer = (): JSX.Element => {
     handleBlur,
     handleSubmit,
     resetForm,
-  } = useFormik({
+  } = useFormik<SignUpFormValues>({
     initialValues: {
       email: '',
       name: '',

@@ -1,18 +1,7 @@
-import { ChangeEvent, FocusEvent, FormEvent } from 'react';
-import { FormikErrors, FormikTouched } from 'formik';
-
 import { Button, Form } from 'src/pages/SignUp/components/SignUpForm/styles';
 import InputWithError from 'src/components/InputWithError';
-import { FormValues } from 'src/pages/SignUp/types/formValues';
-
-interface SignUpFormProps {
-  inputValues: FormValues;
-  errors: FormikErrors<FormValues>;
-  touched: FormikTouched<FormValues>;
-  handleInputChange: (event: ChangeEvent<HTMLInputElement>) => void;
-  handleBlur: (event: FocusEvent) => void;
-  handleSubmit: (event: FormEvent<HTMLFormElement>) => void;
-}
+import { SignUpFormValues } from 'src/pages/SignUp/types/signUpFormValues';
+import { AuthProps } from 'src/types/authProps';
 
 const SignUpForm = ({
   inputValues,
@@ -21,7 +10,7 @@ const SignUpForm = ({
   handleInputChange,
   handleBlur,
   handleSubmit,
-}: SignUpFormProps): JSX.Element => (
+}: AuthProps<SignUpFormValues>): JSX.Element => (
   <Form onSubmit={handleSubmit}>
     <InputWithError
       placeholder='Email'

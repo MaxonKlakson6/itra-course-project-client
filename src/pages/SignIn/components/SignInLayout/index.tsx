@@ -1,32 +1,32 @@
 import {
   ContentHolder,
   Wrapper,
-} from 'src/pages/SignUp/components/SignUpLayout/styles';
-import SignUpForm from 'src/pages/SignUp/components/SignUpForm';
+} from 'src/pages/SignIn/components/SignInLayout/styles';
 import AuthBanner from 'src/components/AuthBanner';
-import { SIGN_UP_TEXT } from 'src/constants/signUpText';
-import AuthForm from 'src/components/AuthForm';
-import { SignUpFormValues } from 'src/pages/SignUp/types/signUpFormValues';
+import { SIGN_IN_TEXT } from 'src/constants/signInText';
 import { ROUTE_NAMES } from 'src/router/routeNames';
 import { AuthProps } from 'src/types/authProps';
+import { SignInFormValues } from 'src/pages/SignIn/types/formValues';
+import SignInForm from 'src/pages/SignIn/components/SignInForm';
+import AuthForm from 'src/components/AuthForm';
 
-const SignUpLayout = ({
+const SignInLayout = ({
   inputValues,
   errors,
   touched,
   handleInputChange,
   handleBlur,
   handleSubmit,
-}: AuthProps<SignUpFormValues>): JSX.Element => (
+}: AuthProps<SignInFormValues>): JSX.Element => (
   <Wrapper>
     <ContentHolder>
       <AuthBanner
-        title={SIGN_UP_TEXT.BANNER_TITLE}
-        buttonText={SIGN_UP_TEXT.BANNER_BUTTON}
-        anotherPageUrl={ROUTE_NAMES.SIGN_IN}
+        title={SIGN_IN_TEXT.BANNER_TITLE}
+        buttonText={SIGN_IN_TEXT.BANNER_BUTTON}
+        anotherPageUrl={ROUTE_NAMES.SIGN_UP}
       />
-      <AuthForm title={SIGN_UP_TEXT.FORM_TITLE}>
-        <SignUpForm
+      <AuthForm title={SIGN_IN_TEXT.FORM_TITLE}>
+        <SignInForm
           inputValues={inputValues}
           errors={errors}
           touched={touched}
@@ -39,4 +39,4 @@ const SignUpLayout = ({
   </Wrapper>
 );
 
-export default SignUpLayout;
+export default SignInLayout;
