@@ -1,5 +1,10 @@
 import { FormControl } from '@mui/material';
-import { ChangeEvent, FocusEvent, HTMLInputTypeAttribute } from 'react';
+import {
+  ChangeEvent,
+  FocusEvent,
+  HTMLInputTypeAttribute,
+  ReactNode,
+} from 'react';
 
 import { ErrorText, Input } from 'src/components/InputWithError/styles';
 

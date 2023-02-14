@@ -1,5 +1,6 @@
 import { useFormik } from 'formik';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router';
 
 import SignInLayout from 'src/pages/SignIn/components/SignInLayout';
 import { SignInFormValues } from 'src/pages/SignIn/types/formValues';
@@ -9,10 +10,11 @@ import { useAppDispatch } from 'src/hooks/reduxHooks';
 import { saveToken } from 'src/store/reducers/authSlice';
 import SnackBar from 'src/components/SnackBar';
 import { createPosition } from 'src/helpers/createPosition';
-import { SIGN_IN_TEXT } from 'src/constants/signInText';
+import { ROUTE_NAMES } from 'src/router/routeNames';
 
 const SignInContainer = (): JSX.Element => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const [signIn, { data, error, isSuccess, isError }] = useSignInMutation();
 
   const {
@@ -39,6 +41,7 @@ const SignInContainer = (): JSX.Element => {
   useEffect(() => {
     if (isSuccess && data) {
       dispatch(saveToken(data));
+      navigate(ROUTE_NAMES.DEFAULT);
     }
   }, [isSuccess]);
 
@@ -56,14 +59,6 @@ const SignInContainer = (): JSX.Element => {
         <SnackBar
           message={error as string}
           severity='error'
-          duration={2000}
-          position={createPosition('top', 'center')}
-        />
-      )}
-      {isSuccess && (
-        <SnackBar
-          message={SIGN_IN_TEXT.SUCCESS_MESSAGE}
-          severity='success'
           duration={2000}
           position={createPosition('top', 'center')}
         />

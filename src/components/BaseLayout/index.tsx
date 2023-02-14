@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 
 import { Main, Wrapper } from 'src/components/BaseLayout/styles';
+import Header from 'src/components/Header';
 
 interface BaseLayoutProps {
   children: ReactNode;
@@ -8,7 +9,7 @@ interface BaseLayoutProps {
 
 const BaseLayout = ({ children }: BaseLayoutProps): JSX.Element => (
   <Wrapper>
-    <header>Header</header>
+    <Header />
     <Main>{children}</Main>
     <footer>Footer</footer>
   </Wrapper>
