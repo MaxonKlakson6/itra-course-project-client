@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
-import ReactMarkdown from 'react-markdown';
 
-export const MarkdownField = styled(ReactMarkdown)`
+export const MarkdownWrapper = styled.div`
   font-family: Roboto, sans-serif;
 `;
