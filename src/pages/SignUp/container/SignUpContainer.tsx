@@ -39,7 +39,7 @@ const SignUpContainer = (): JSX.Element => {
   });
 
   useEffect(() => {
-    let timeout: number;
+    let timeout: ReturnType<typeof setTimeout>;
     if (isSuccess) {
       timeout = setTimeout(() => {
         navigate(ROUTE_NAMES.SIGN_IN);

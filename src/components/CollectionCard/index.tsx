@@ -1,6 +1,6 @@
 import { Card, CardContent, CardMedia, Typography } from '@mui/material';
 
-import { MarkdownField } from 'src/components/Markdown/styles';
+import Markdown from 'src/components/Markdown';
 
 interface CollectionCardProps {
   className?: string;
@@ -25,9 +25,9 @@ const CollectionCard = ({
       sx={{ height: 200 }}
     />
     <CardContent>
-      <MarkdownField>{title}</MarkdownField>
+      <Markdown value={title} />
       <Typography variant='h6'>{subject}</Typography>
-      <MarkdownField>{description}</MarkdownField>
+      <Markdown value={description} />
     </CardContent>
   </Card>
 );
