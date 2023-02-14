@@ -30,6 +30,7 @@ export const collectionApi = createApi({
       query: (id) => ({
         url: `collection/${id}`,
       }),
+      keepUnusedDataFor: 0,
       transformErrorResponse: (response: ErrorResponse) => response.data.error,
     }),
     createCollection: builder.mutation<string, CreateCollectionRequest>({

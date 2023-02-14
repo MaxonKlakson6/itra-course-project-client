@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import { v4 as uuid } from 'uuid';
 
@@ -68,6 +68,17 @@ export const useCollection = ({
     stateCopy.splice(index, 1);
     setOptionalFields(stateCopy);
   };
+
+  useEffect(() => {
+    if (optional) {
+      const fields = optional.map((field) => ({
+        type: field.type,
+        id: field.id,
+        label: field.label,
+      }));
+      setOptionalFields(fields);
+    }
+  }, [optional]);
 
   return {
     image,
