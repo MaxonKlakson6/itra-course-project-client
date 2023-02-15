@@ -7,21 +7,24 @@ import ProfileContainer from 'src/pages/Profile/containers/ProfileContainer';
 import DefaultContainer from 'src/pages/Default/container/DefaultContainer';
 import CreateCollectionContainer from 'src/pages/Profile/containers/CreateCollectionContainer';
 import ChangeCollectionContainer from 'src/pages/Profile/containers/ChangeCollectionContainer';
+import PrivateRoute from 'src/router/PrivateRoute';
 
 const Router = () => (
   <Routes>
     <Route path={ROUTE_NAMES.DEFAULT} element={<DefaultContainer />} />
     <Route path={ROUTE_NAMES.SIGN_UP} element={<SignUpContainer />} />
     <Route path={ROUTE_NAMES.SIGN_IN} element={<SignInContainer />} />
-    <Route path={ROUTE_NAMES.PROFILE} element={<ProfileContainer />} />
-    <Route
-      path={ROUTE_NAMES.CREATE_COLLECTION}
-      element={<CreateCollectionContainer />}
-    />
-    <Route
-      path={ROUTE_NAMES.CHANGE_COLLECTION}
-      element={<ChangeCollectionContainer />}
-    />
+    <Route element={<PrivateRoute />}>
+      <Route path={ROUTE_NAMES.PROFILE} element={<ProfileContainer />} />
+      <Route
+        path={ROUTE_NAMES.CREATE_COLLECTION}
+        element={<CreateCollectionContainer />}
+      />
+      <Route
+        path={ROUTE_NAMES.CHANGE_COLLECTION}
+        element={<ChangeCollectionContainer />}
+      />
+    </Route>
     <Route path='/' element={<Navigate to={ROUTE_NAMES.DEFAULT} />} />
   </Routes>
 );

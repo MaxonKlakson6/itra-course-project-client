@@ -1,4 +1,11 @@
-import { fetchBaseQuery } from '@reduxjs/toolkit/query';
+import {
+  BaseQueryFn,
+  FetchArgs,
+  fetchBaseQuery,
+  FetchBaseQueryError,
+} from '@reduxjs/toolkit/query';
+
+import { resetAuthState } from 'src/store/reducers/authSlice';
 
 import type { RootState } from 'src/types/reduxTypes';
 
@@ -17,3 +24,16 @@ export const baseQuery = fetchBaseQuery({
     return headers;
   },
 });
+
+export const baseQueryWithCheckAuth: BaseQueryFn<
+  string | FetchArgs,
+  unknown,
+  FetchBaseQueryError
+> = async (args, api, extraOptions) => {
+  const result = await baseQuery(args, api, extraOptions);
+  if (result.error && result.error.status === 401) {
+    localStorage.clear();
+    api.dispatch(resetAuthState());
+  }
+  return result;
+};

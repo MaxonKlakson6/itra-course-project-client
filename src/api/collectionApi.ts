@@ -5,13 +5,13 @@ import {
   ChangeCollectionRequest,
   CreateCollectionRequest,
 } from 'src/types/collectionRequests';
-import { baseQuery } from 'src/api/baseQuery';
+import { baseQueryWithCheckAuth } from 'src/api/baseQuery';
 import { ErrorResponse } from 'src/types/errorResponse';
 
 export const collectionApi = createApi({
   reducerPath: 'collectionApi',
   tagTypes: ['Collections'],
-  baseQuery,
+  baseQuery: baseQueryWithCheckAuth,
   endpoints: (builder) => ({
     getUserCollections: builder.query<Collection[], number>({
       query: (id) => ({
