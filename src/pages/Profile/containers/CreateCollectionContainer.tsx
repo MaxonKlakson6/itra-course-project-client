@@ -4,12 +4,12 @@ import MutateCollectionLayout from 'src/pages/Profile/components/MutateCollectio
 import { subjectDefaultValue } from 'src/constants/subjects';
 import { useCreateCollectionMutation } from 'src/api/collectionApi';
 import { loadImage } from 'src/helpers/loadImage';
-import defaultImage from 'src/static/images/default.jpg';
 import { useCollection } from 'src/hooks/useCollection';
 import { validateCollectionOptionalFields } from 'src/validation/validateCollectionOptionalFields';
-import { ERROR_MESSAGES } from 'src/constants/errorMessages';
-import { CollectionMutationType } from 'src/pages/Profile/types/collectionMutationType';
 import { useAlertMessages } from 'src/hooks/useAlertMessages';
+import { CollectionMutationType } from 'src/pages/Profile/types/collectionMutationType';
+import { ERROR_MESSAGES } from 'src/constants/errorMessages';
+import defaultImage from 'src/static/images/default.jpg';
 
 const CreateCollectionContainer = () => {
   const [errorMessage, setErrorMessage] = useState<string>('');

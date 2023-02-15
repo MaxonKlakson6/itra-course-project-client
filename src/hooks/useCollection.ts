@@ -2,8 +2,8 @@ import { ChangeEvent, useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import { v4 as uuid } from 'uuid';
 
-import { OptionalField } from 'src/types/collection';
 import { collectionSchema } from 'src/validation/collectionSchema';
+import { OptionalField } from 'src/types/collection';
 import { OptionalFieldTypes } from 'src/types/optionalFieldTypes';
 import { CollectionForm } from 'src/pages/Profile/types/collectionForm';
 import { CollectionMutationType } from 'src/pages/Profile/types/collectionMutationType';

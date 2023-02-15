@@ -11,10 +11,10 @@ import {
   CloseButton,
 } from 'src/pages/Profile/components/MutateCollectionLayout/styles';
 import TabPanel from 'src/components/TabPanel';
-import defaultImage from 'src/static/images/default.jpg';
 import MutateForm from 'src/pages/Profile/components/MutateCollectionForm';
 import { MutateFormProps } from 'src/pages/Profile/types/createCollectionProps';
 import { ROUTE_NAMES } from 'src/router/routeNames';
+import defaultImage from 'src/static/images/default.jpg';
 
 interface MutateCollectionLayoutProps extends MutateFormProps {
   imageUrl?: string;

@@ -3,17 +3,15 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
 
 import SignUpLayout from 'src/pages/SignUp/components/SignUpLayout';
-import SnackBar from 'src/components/SnackBar';
+import { useAlertMessages } from 'src/hooks/useAlertMessages';
 import { useSignUpMutation } from 'src/api/authApi';
-import { createPosition } from 'src/helpers/createPosition';
 import { signUpSchema } from 'src/validation/signUpSchema';
 import { ROUTE_NAMES } from 'src/router/routeNames';
 import { SignUpFormValues } from 'src/pages/SignUp/types/signUpFormValues';
-import { useAlertMessages } from 'src/hooks/useAlertMessages';
 
 const SignUpContainer = (): JSX.Element => {
   const navigate = useNavigate();
-  const [signUp, { data, error, isError, isSuccess }] = useSignUpMutation();
+  const [signUp, { data, error, isSuccess }] = useSignUpMutation();
   useAlertMessages(error as string, data as string);
   const {
     values,

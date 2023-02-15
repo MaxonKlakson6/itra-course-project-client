@@ -1,10 +1,10 @@
 import { ContentHolder, Wrapper } from 'src/static/styles/authStyles';
 import SignUpForm from 'src/pages/SignUp/components/SignUpForm';
 import AuthBanner from 'src/components/AuthBanner';
-import { SIGN_UP_TEXT } from 'src/constants/signUpText';
 import AuthForm from 'src/components/AuthForm';
-import { SignUpFormValues } from 'src/pages/SignUp/types/signUpFormValues';
+import { SIGN_UP_TEXT } from 'src/constants/signUpText';
 import { ROUTE_NAMES } from 'src/router/routeNames';
+import { SignUpFormValues } from 'src/pages/SignUp/types/signUpFormValues';
 import { AuthProps } from 'src/types/authProps';
 
 const SignUpLayout = ({

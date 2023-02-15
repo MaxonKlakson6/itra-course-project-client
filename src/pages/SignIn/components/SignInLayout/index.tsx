@@ -1,11 +1,11 @@
 import { ContentHolder, Wrapper } from 'src/static/styles/authStyles';
 import AuthBanner from 'src/components/AuthBanner';
+import SignInForm from 'src/pages/SignIn/components/SignInForm';
+import AuthForm from 'src/components/AuthForm';
 import { SIGN_IN_TEXT } from 'src/constants/signInText';
 import { ROUTE_NAMES } from 'src/router/routeNames';
 import { AuthProps } from 'src/types/authProps';
 import { SignInFormValues } from 'src/pages/SignIn/types/formValues';
-import SignInForm from 'src/pages/SignIn/components/SignInForm';
-import AuthForm from 'src/components/AuthForm';
 
 const SignInLayout = ({
   inputValues,

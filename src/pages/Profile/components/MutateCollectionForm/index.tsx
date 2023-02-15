@@ -7,14 +7,14 @@ import {
   Form,
   ImageLoader,
 } from 'src/pages/Profile/components/MutateCollectionForm/styles';
-import { OptionalFieldTypes } from 'src/types/optionalFieldTypes';
-import OptionalField from 'src/pages/Profile/components/OptionalField';
 import { ErrorText } from 'src/components/InputWithError/styles';
+import OptionalField from 'src/pages/Profile/components/OptionalField';
 import InputWithError from 'src/components/InputWithError';
 import Select from 'src/components/Select';
-import { MutateFormProps as FormProps } from 'src/pages/Profile/types/createCollectionProps';
 import { optionalFieldsTypes } from 'src/constants/optionalFieldsTypes';
 import { subjects } from 'src/constants/subjects';
+import { OptionalFieldTypes } from 'src/types/optionalFieldTypes';
+import { MutateFormProps as FormProps } from 'src/pages/Profile/types/createCollectionProps';
 
 interface CreateFormProps extends FormProps {
   image: string;

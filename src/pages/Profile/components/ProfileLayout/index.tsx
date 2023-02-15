@@ -7,9 +7,9 @@ import {
   NameTitle,
   Wrapper,
 } from 'src/pages/Profile/components/ProfileLayout/styles';
-import { Collection } from 'src/types/collection';
 import CollectionManager from 'src/pages/Profile/components/CollectionManager';
 import { ROUTE_NAMES } from 'src/router/routeNames';
+import { Collection } from 'src/types/collection';
 
 interface ProfileLayoutProps {
   userName: string;

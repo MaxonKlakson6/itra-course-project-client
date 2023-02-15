@@ -1,17 +1,17 @@
 import { useParams } from 'react-router';
 import { useEffect, useState } from 'react';
 
-import { CollectionMutationType } from 'src/pages/Profile/types/collectionMutationType';
+import MutateCollectionLayout from 'src/pages/Profile/components/MutateCollectionLayout';
 import {
   useChangeCollectionMutation,
   useGetCollectionQuery,
 } from 'src/api/collectionApi';
 import { useCollection } from 'src/hooks/useCollection';
-import { OptionalField } from 'src/types/collection';
-import MutateCollectionLayout from 'src/pages/Profile/components/MutateCollectionLayout';
 import { validateCollectionOptionalFields } from 'src/validation/validateCollectionOptionalFields';
 import { loadImage } from 'src/helpers/loadImage';
 import { useAlertMessages } from 'src/hooks/useAlertMessages';
+import { CollectionMutationType } from 'src/pages/Profile/types/collectionMutationType';
+import { OptionalField } from 'src/types/collection';
 
 const ChangeCollectionContainer = () => {
   const { id } = useParams();

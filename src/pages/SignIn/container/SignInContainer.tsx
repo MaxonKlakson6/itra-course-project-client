@@ -3,13 +3,13 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
 
 import SignInLayout from 'src/pages/SignIn/components/SignInLayout';
-import { SignInFormValues } from 'src/pages/SignIn/types/formValues';
-import { signInSchema } from 'src/validation/signInSchema';
-import { useSignInMutation } from 'src/api/authApi';
 import { useAppDispatch } from 'src/hooks/reduxHooks';
 import { saveToken } from 'src/store/reducers/authSlice';
-import { ROUTE_NAMES } from 'src/router/routeNames';
 import { useAlertMessages } from 'src/hooks/useAlertMessages';
+import { useSignInMutation } from 'src/api/authApi';
+import { signInSchema } from 'src/validation/signInSchema';
+import { ROUTE_NAMES } from 'src/router/routeNames';
+import { SignInFormValues } from 'src/pages/SignIn/types/formValues';
 
 const SignInContainer = (): JSX.Element => {
   const dispatch = useAppDispatch();
