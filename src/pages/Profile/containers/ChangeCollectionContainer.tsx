@@ -11,18 +11,17 @@ import { OptionalField } from 'src/types/collection';
 import MutateCollectionLayout from 'src/pages/Profile/components/MutateCollectionLayout';
 import { validateCollectionOptionalFields } from 'src/validation/validateCollectionOptionalFields';
 import { loadImage } from 'src/helpers/loadImage';
-import SnackBar from 'src/components/SnackBar';
-import { createPosition } from 'src/helpers/createPosition';
+import { useAlertMessages } from 'src/hooks/useAlertMessages';
 
 const ChangeCollectionContainer = () => {
   const { id } = useParams();
   const { data, isLoading } = useGetCollectionQuery(Number(id));
-  const [
-    changeCollection,
-    { error, isError, isSuccess, data: successMessage },
-  ] = useChangeCollectionMutation();
+  const [changeCollection, { error, isError, data: successMessage }] =
+    useChangeCollectionMutation();
 
   const [errorMessage, setErrorMessage] = useState<string>('');
+
+  useAlertMessages(errorMessage, successMessage as string);
 
   const submit = async ({
     values,
@@ -77,41 +76,21 @@ const ChangeCollectionContainer = () => {
   }
 
   return (
-    <>
-      <MutateCollectionLayout
-        formTitle='Change collection'
-        values={values}
-        imageUrl={data?.image}
-        errors={errors}
-        touched={touched}
-        handleBlur={handleBlur}
-        optionalFields={optionalFields}
-        handleChange={handleChange}
-        createNewField={createNewField}
-        handleChangeOptionalField={handleChangeOptionalField}
-        deleteOptionalField={deleteOptionalField}
-        handleCreateCollection={handleSubmit}
-        handleChangeImageUrl={handleChangeImageUrl}
-      />
-      {errorMessage && (
-        <SnackBar
-          message={errorMessage}
-          severity='error'
-          duration={2000}
-          position={createPosition('top', 'center')}
-          onClose={() => setErrorMessage('')}
-        />
-      )}
-      {isSuccess && (
-        <SnackBar
-          message={successMessage as string}
-          severity='success'
-          duration={2000}
-          position={createPosition('top', 'center')}
-          onClose={() => setErrorMessage('')}
-        />
-      )}
-    </>
+    <MutateCollectionLayout
+      formTitle='Change collection'
+      values={values}
+      imageUrl={data?.image}
+      errors={errors}
+      touched={touched}
+      handleBlur={handleBlur}
+      optionalFields={optionalFields}
+      handleChange={handleChange}
+      createNewField={createNewField}
+      handleChangeOptionalField={handleChangeOptionalField}
+      deleteOptionalField={deleteOptionalField}
+      handleCreateCollection={handleSubmit}
+      handleChangeImageUrl={handleChangeImageUrl}
+    />
   );
 };
 

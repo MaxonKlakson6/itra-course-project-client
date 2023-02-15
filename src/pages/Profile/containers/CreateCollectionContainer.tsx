@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
 
 import MutateCollectionLayout from 'src/pages/Profile/components/MutateCollectionLayout';
-import SnackBar from 'src/components/SnackBar';
-import { createPosition } from 'src/helpers/createPosition';
 import { subjectDefaultValue } from 'src/constants/subjects';
 import { useCreateCollectionMutation } from 'src/api/collectionApi';
 import { loadImage } from 'src/helpers/loadImage';
@@ -11,11 +9,14 @@ import { useCollection } from 'src/hooks/useCollection';
 import { validateCollectionOptionalFields } from 'src/validation/validateCollectionOptionalFields';
 import { ERROR_MESSAGES } from 'src/constants/errorMessages';
 import { CollectionMutationType } from 'src/pages/Profile/types/collectionMutationType';
+import { useAlertMessages } from 'src/hooks/useAlertMessages';
 
 const CreateCollectionContainer = () => {
   const [errorMessage, setErrorMessage] = useState<string>('');
-  const [createCollection, { data, error, isError, isSuccess }] =
+  const [createCollection, { data, error, isError }] =
     useCreateCollectionMutation();
+
+  useAlertMessages(errorMessage, data as string);
   const submit = async ({
     values,
     optionalFields,
@@ -67,40 +68,20 @@ const CreateCollectionContainer = () => {
   }, [error, isError]);
 
   return (
-    <>
-      <MutateCollectionLayout
-        formTitle='Create new collection'
-        values={values}
-        errors={errors}
-        touched={touched}
-        handleBlur={handleBlur}
-        optionalFields={optionalFields}
-        handleChange={handleChange}
-        createNewField={createNewField}
-        handleChangeOptionalField={handleChangeOptionalField}
-        deleteOptionalField={deleteOptionalField}
-        handleCreateCollection={handleSubmit}
-        handleChangeImageUrl={handleChangeImageUrl}
-      />
-      {errorMessage && (
-        <SnackBar
-          message={errorMessage}
-          severity='error'
-          duration={2000}
-          position={createPosition('top', 'center')}
-          onClose={() => setErrorMessage('')}
-        />
-      )}
-      {isSuccess && (
-        <SnackBar
-          message={data as string}
-          severity='success'
-          duration={2000}
-          position={createPosition('top', 'center')}
-          onClose={() => setErrorMessage('')}
-        />
-      )}
-    </>
+    <MutateCollectionLayout
+      formTitle='Create new collection'
+      values={values}
+      errors={errors}
+      touched={touched}
+      handleBlur={handleBlur}
+      optionalFields={optionalFields}
+      handleChange={handleChange}
+      createNewField={createNewField}
+      handleChangeOptionalField={handleChangeOptionalField}
+      deleteOptionalField={deleteOptionalField}
+      handleCreateCollection={handleSubmit}
+      handleChangeImageUrl={handleChangeImageUrl}
+    />
   );
 };
 

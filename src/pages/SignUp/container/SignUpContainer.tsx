@@ -9,11 +9,12 @@ import { createPosition } from 'src/helpers/createPosition';
 import { signUpSchema } from 'src/validation/signUpSchema';
 import { ROUTE_NAMES } from 'src/router/routeNames';
 import { SignUpFormValues } from 'src/pages/SignUp/types/signUpFormValues';
+import { useAlertMessages } from 'src/hooks/useAlertMessages';
 
 const SignUpContainer = (): JSX.Element => {
   const navigate = useNavigate();
   const [signUp, { data, error, isError, isSuccess }] = useSignUpMutation();
-
+  useAlertMessages(error as string, data as string);
   const {
     values,
     errors,
@@ -52,32 +53,14 @@ const SignUpContainer = (): JSX.Element => {
   }, [data]);
 
   return (
-    <>
-      <SignUpLayout
-        inputValues={values}
-        errors={errors}
-        touched={touched}
-        handleInputChange={handleChange}
-        handleBlur={handleBlur}
-        handleSubmit={handleSubmit}
-      />
-      {isError && (
-        <SnackBar
-          message={error as string}
-          severity='error'
-          duration={2000}
-          position={createPosition('top', 'center')}
-        />
-      )}
-      {isSuccess && (
-        <SnackBar
-          message={data as string}
-          severity='success'
-          duration={2000}
-          position={createPosition('top', 'center')}
-        />
-      )}
-    </>
+    <SignUpLayout
+      inputValues={values}
+      errors={errors}
+      touched={touched}
+      handleInputChange={handleChange}
+      handleBlur={handleBlur}
+      handleSubmit={handleSubmit}
+    />
   );
 };
 

@@ -8,14 +8,15 @@ import { signInSchema } from 'src/validation/signInSchema';
 import { useSignInMutation } from 'src/api/authApi';
 import { useAppDispatch } from 'src/hooks/reduxHooks';
 import { saveToken } from 'src/store/reducers/authSlice';
-import SnackBar from 'src/components/SnackBar';
-import { createPosition } from 'src/helpers/createPosition';
 import { ROUTE_NAMES } from 'src/router/routeNames';
+import { useAlertMessages } from 'src/hooks/useAlertMessages';
 
 const SignInContainer = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const [signIn, { data, error, isSuccess, isError }] = useSignInMutation();
+  const [signIn, { data, error, isSuccess }] = useSignInMutation();
+
+  useAlertMessages(error as string, '');
 
   const {
     values,
@@ -46,24 +47,14 @@ const SignInContainer = (): JSX.Element => {
   }, [isSuccess]);
 
   return (
-    <>
-      <SignInLayout
-        inputValues={values}
-        errors={errors}
-        touched={touched}
-        handleInputChange={handleChange}
-        handleBlur={handleBlur}
-        handleSubmit={handleSubmit}
-      />
-      {isError && (
-        <SnackBar
-          message={error as string}
-          severity='error'
-          duration={2000}
-          position={createPosition('top', 'center')}
-        />
-      )}
-    </>
+    <SignInLayout
+      inputValues={values}
+      errors={errors}
+      touched={touched}
+      handleInputChange={handleChange}
+      handleBlur={handleBlur}
+      handleSubmit={handleSubmit}
+    />
   );
 };
 
