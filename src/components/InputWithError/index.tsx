@@ -4,6 +4,7 @@ import { ChangeEvent, FocusEvent, HTMLInputTypeAttribute } from 'react';
 import { ErrorText, Input } from 'src/components/InputWithError/styles';
 
 interface InputWithErrorProps {
+  className?: string;
   placeholder: string;
   inputType: HTMLInputTypeAttribute;
   inputValue: string;
@@ -15,6 +16,7 @@ interface InputWithErrorProps {
 }
 
 const InputWithError = ({
+  className,
   placeholder,
   inputType,
   inputValue,
@@ -24,7 +26,7 @@ const InputWithError = ({
   onChange,
   handleBlur,
 }: InputWithErrorProps): JSX.Element => (
-  <FormControl>
+  <FormControl className={className}>
     <Input
       type={inputType}
       variant='standard'

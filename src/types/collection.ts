@@ -5,6 +5,7 @@ export interface OptionalField {
   label: string;
 
   id: string;
+  value: string | number | boolean;
 }
 
 export interface Collection {

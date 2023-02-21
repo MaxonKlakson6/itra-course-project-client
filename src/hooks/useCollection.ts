@@ -7,6 +7,7 @@ import { OptionalField } from 'src/types/collection';
 import { OptionalFieldTypes } from 'src/types/optionalFieldTypes';
 import { CollectionForm } from 'src/pages/Profile/types/collectionForm';
 import { CollectionMutationType } from 'src/pages/Profile/types/collectionMutationType';
+import { createOptionalFieldValue } from 'src/helpers/createOptionalFieldValue';
 
 interface UseCollectionProps {
   initialValues: CollectionForm;
@@ -44,6 +45,7 @@ export const useCollection = ({
       type,
       label: '',
       id: uuid(),
+      value: createOptionalFieldValue(type),
     };
     setOptionalFields([...optionalFields, newField]);
   };
@@ -75,6 +77,7 @@ export const useCollection = ({
         type: field.type,
         id: field.id,
         label: field.label,
+        value: field.value,
       }));
       setOptionalFields(fields);
     }

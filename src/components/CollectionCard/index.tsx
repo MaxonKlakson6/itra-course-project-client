@@ -1,8 +1,10 @@
 import { Card, CardContent, CardMedia, Typography } from '@mui/material';
+import { useNavigate } from 'react-router';
 
 import Markdown from 'src/components/Markdown';
 
 interface CollectionCardProps {
+  collectionId: number;
   className?: string;
   image: string;
   title: string;
@@ -11,25 +13,40 @@ interface CollectionCardProps {
 }
 
 const CollectionCard = ({
+  collectionId,
   className,
   image,
   title,
   subject,
   description,
-}: CollectionCardProps) => (
-  <Card sx={{ width: 300 }} className={className}>
-    <CardMedia
-      component='img'
-      src={image}
-      alt='Collection card image'
-      sx={{ height: 200 }}
-    />
-    <CardContent>
-      <Markdown value={title} />
-      <Typography variant='h6'>{subject}</Typography>
-      <Markdown value={description} />
-    </CardContent>
-  </Card>
-);
+}: CollectionCardProps) => {
+  const navigate = useNavigate();
+
+  const handleNavigateToItems = () => {
+    if (collectionId) {
+      navigate(`/profile-items/${collectionId}`);
+    }
+  };
+
+  return (
+    <Card
+      sx={{ width: 300, cursor: 'pointer' }}
+      className={className}
+      onClick={handleNavigateToItems}
+    >
+      <CardMedia
+        component='img'
+        src={image}
+        alt='Collection card image'
+        sx={{ height: 200 }}
+      />
+      <CardContent>
+        <Markdown value={title} />
+        <Typography variant='h6'>{subject}</Typography>
+        <Markdown value={description} />
+      </CardContent>
+    </Card>
+  );
+};
 
 export default CollectionCard;

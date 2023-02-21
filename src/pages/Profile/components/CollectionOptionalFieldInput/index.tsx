@@ -5,9 +5,9 @@ import {
   DeleteButton,
   InputField,
   Wrapper,
-} from 'src/pages/Profile/components/OptionalField/styles';
+} from 'src/pages/Profile/components/CollectionOptionalFieldInput/styles';
 
-interface OptionalFieldProps {
+interface CollectionOptionalFieldInputProps {
   id: string;
   index: number;
   label: string;
@@ -15,13 +15,13 @@ interface OptionalFieldProps {
   deleteOptionalField: (index: number) => void;
 }
 
-const OptionalField = ({
+const CollectionOptionalFieldInput = ({
   id,
   index,
   label,
   handleChange,
   deleteOptionalField,
-}: OptionalFieldProps): JSX.Element => (
+}: CollectionOptionalFieldInputProps): JSX.Element => (
   <Wrapper>
     <InputField
       fullWidth
@@ -37,4 +37,4 @@ const OptionalField = ({
   </Wrapper>
 );
 
-export default OptionalField;
+export default CollectionOptionalFieldInput;

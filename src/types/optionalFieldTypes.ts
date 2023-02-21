@@ -1,1 +1,7 @@
-export type OptionalFieldTypes = 'string' | 'number' | 'date' | 'boolean' | '';
+export type OptionalFieldTypes =
+  | 'string'
+  | 'text'
+  | 'number'
+  | 'date'
+  | 'boolean'
+  | '';

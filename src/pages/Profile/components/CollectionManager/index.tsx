@@ -38,6 +38,7 @@ const CollectionManager = ({
       </DeleteButton>
     </Tooltip>
     <CollectionCard
+      collectionId={collectionId}
       image={image}
       title={title}
       subject={subject}

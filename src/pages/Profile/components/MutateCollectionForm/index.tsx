@@ -8,7 +8,7 @@ import {
   ImageLoader,
 } from 'src/pages/Profile/components/MutateCollectionForm/styles';
 import { ErrorText } from 'src/components/InputWithError/styles';
-import OptionalField from 'src/pages/Profile/components/OptionalField';
+import CollectionOptionalFieldInput from 'src/pages/Profile/components/CollectionOptionalFieldInput';
 import InputWithError from 'src/components/InputWithError';
 import Select from 'src/components/Select';
 import { optionalFieldsTypes } from 'src/constants/optionalFieldsTypes';
@@ -77,7 +77,7 @@ const MutateForm = ({
         <ErrorText>{touched.description && errors.description}</ErrorText>
       </FormControl>
       {optionalFields.map((optionalField, index) => (
-        <OptionalField
+        <CollectionOptionalFieldInput
           key={optionalField.id}
           id={optionalField.id}
           index={index}
