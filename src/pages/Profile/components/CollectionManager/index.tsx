@@ -8,6 +8,8 @@ import {
   UpdateButton,
   Wrapper,
 } from 'src/pages/Profile/components/CollectionManager/styles';
+import { ROUTES_WITH_ID } from 'src/router/routeNames';
+import { TOOLTIP } from 'src/constants/tooltip';
 
 interface CollectionManagerProps {
   image: string;
@@ -27,12 +29,12 @@ const CollectionManager = ({
   handleDeleteCollection,
 }: CollectionManagerProps) => (
   <Wrapper>
-    <Tooltip title='Update collection' placement='right-start'>
-      <UpdateButton to={`/change-collection/${collectionId}`}>
+    <Tooltip title={TOOLTIP.UPDATE_COLLECTION} placement='right-start'>
+      <UpdateButton to={`${ROUTES_WITH_ID.CHANGE_COLLECTION}/${collectionId}`}>
         <SettingsIcon />
       </UpdateButton>
     </Tooltip>
-    <Tooltip title='Delete collection' placement='right-start'>
+    <Tooltip title={TOOLTIP.DELETE_COLLECTION} placement='right-start'>
       <DeleteButton onClick={() => handleDeleteCollection(collectionId)}>
         <DeleteIcon />
       </DeleteButton>

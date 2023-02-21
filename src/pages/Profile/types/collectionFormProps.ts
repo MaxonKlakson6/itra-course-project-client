@@ -6,7 +6,7 @@ import { OptionalFieldTypes } from 'src/types/optionalFieldTypes';
 import { CollectionForm } from 'src/pages/Profile/types/collectionForm';
 import { OptionalField } from 'src/types/collection';
 
-export interface MutateFormProps {
+export interface CollectionFormProps {
   values: CollectionForm;
   errors: FormikErrors<CollectionForm>;
   touched: FormikTouched<CollectionForm>;

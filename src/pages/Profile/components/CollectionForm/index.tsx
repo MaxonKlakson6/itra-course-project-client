@@ -1,12 +1,12 @@
 import { FormControl } from '@mui/material';
 
 import {
-  AddFieldButton,
-  CreateCollectionButton,
+  AddButton,
+  SubmitButton,
   DescriptionField,
   Form,
   ImageLoader,
-} from 'src/pages/Profile/components/MutateCollectionForm/styles';
+} from 'src/static/styles/formStyles';
 import { ErrorText } from 'src/components/InputWithError/styles';
 import CollectionOptionalFieldInput from 'src/pages/Profile/components/CollectionOptionalFieldInput';
 import InputWithError from 'src/components/InputWithError';
@@ -14,14 +14,14 @@ import Select from 'src/components/Select';
 import { optionalFieldsTypes } from 'src/constants/optionalFieldsTypes';
 import { subjects } from 'src/constants/subjects';
 import { OptionalFieldTypes } from 'src/types/optionalFieldTypes';
-import { MutateFormProps as FormProps } from 'src/pages/Profile/types/createCollectionProps';
+import { CollectionFormProps as FormProps } from 'src/pages/Profile/types/collectionFormProps';
 
-interface CreateFormProps extends FormProps {
+interface CollectionFormProps extends FormProps {
   image: string;
   handleImageChange: (newImage: string) => void;
 }
 
-const MutateForm = ({
+const CollectionForm = ({
   image,
   values,
   optionalFields,
@@ -35,7 +35,7 @@ const MutateForm = ({
   deleteOptionalField,
   handleCreateCollection,
   handleChangeImageUrl,
-}: CreateFormProps): JSX.Element => {
+}: CollectionFormProps): JSX.Element => {
   const saveType = (chosenType: string) => {
     createNewField(chosenType as OptionalFieldTypes);
   };
@@ -86,18 +86,18 @@ const MutateForm = ({
           deleteOptionalField={deleteOptionalField}
         />
       ))}
-      <AddFieldButton
+      <AddButton
         id='collection-type'
         menuItems={optionalFieldsTypes}
         saveValue={saveType}
       >
         Add field
-      </AddFieldButton>
-      <CreateCollectionButton type='submit' variant='contained'>
+      </AddButton>
+      <SubmitButton type='submit' variant='contained'>
         Submit
-      </CreateCollectionButton>
+      </SubmitButton>
     </Form>
   );
 };
 
-export default MutateForm;
+export default CollectionForm;

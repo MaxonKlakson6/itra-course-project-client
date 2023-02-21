@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import MutateCollectionLayout from 'src/pages/Profile/components/MutateCollectionLayout';
+import CollectionFormLayout from 'src/pages/Profile/components/CollectionFormLayout';
 import { subjectDefaultValue } from 'src/constants/subjects';
 import { useCreateCollectionMutation } from 'src/api/collectionApi';
 import { loadImage } from 'src/helpers/loadImage';
@@ -68,7 +68,7 @@ const CreateCollectionContainer = () => {
   }, [error, isError]);
 
   return (
-    <MutateCollectionLayout
+    <CollectionFormLayout
       formTitle='Create new collection'
       values={values}
       errors={errors}

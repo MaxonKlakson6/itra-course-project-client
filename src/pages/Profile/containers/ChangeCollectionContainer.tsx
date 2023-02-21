@@ -1,7 +1,7 @@
 import { useParams } from 'react-router';
 import { useEffect, useState } from 'react';
 
-import MutateCollectionLayout from 'src/pages/Profile/components/MutateCollectionLayout';
+import CollectionFormLayout from 'src/pages/Profile/components/CollectionFormLayout';
 import {
   useChangeCollectionMutation,
   useGetCollectionQuery,
@@ -76,7 +76,7 @@ const ChangeCollectionContainer = () => {
   }
 
   return (
-    <MutateCollectionLayout
+    <CollectionFormLayout
       formTitle='Change collection'
       values={values}
       imageUrl={data?.image}

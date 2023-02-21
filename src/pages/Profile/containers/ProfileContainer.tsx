@@ -1,3 +1,5 @@
+import { useParams } from 'react-router';
+
 import ProfileLayout from 'src/pages/Profile/components/ProfileLayout';
 import { useAppSelector } from 'src/hooks/reduxHooks';
 import { authSelector } from 'src/store/selectors/authSelector';
@@ -8,6 +10,7 @@ import {
 import { useAlertMessages } from 'src/hooks/useAlertMessages';
 
 const ProfileContainer = () => {
+  const { ownerId } = useParams();
   const { userData } = useAppSelector(authSelector);
 
   const { data = [] } = useGetUserCollectionsQuery(userData.id);
@@ -22,6 +25,7 @@ const ProfileContainer = () => {
 
   return (
     <ProfileLayout
+      isReadOnly={Number(ownerId) !== userData.id}
       userName={userData.name}
       collections={data}
       handleDeleteCollection={handleDeleteCollection}

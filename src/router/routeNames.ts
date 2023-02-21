@@ -2,7 +2,7 @@ export const ROUTE_NAMES = {
   DEFAULT: '/default',
   SIGN_UP: '/sign-up',
   SIGN_IN: '/sign-in',
-  PROFILE: '/profile',
+  PROFILE: '/profile/:ownerId',
   COLLECTION: '/collection/:id',
   CREATE_COLLECTION: '/create-collection',
   CHANGE_COLLECTION: '/change-collection/:id',
@@ -10,4 +10,12 @@ export const ROUTE_NAMES = {
   ITEM: '/item/:collectionId/:itemId',
   CREATE_ITEM: '/create-item/:collectionId',
   CHANGE_ITEM: '/change-item/:collectionId/:itemId',
+};
+
+export const ROUTES_WITH_ID = {
+  PROFILE: '/profile',
+  COLLECTION: '/collection',
+  CHANGE_COLLECTION: '/change-collection',
+  CREATE_ITEM: '/create-item',
+  CHANGE_ITEM: '/change-item',
 };

@@ -1,6 +1,10 @@
 import { ReactNode } from 'react';
 
-import { Main, Wrapper } from 'src/components/BaseLayout/styles';
+import {
+  ContentWrapper,
+  Main,
+  Wrapper,
+} from 'src/components/BaseLayout/styles';
 import Header from 'src/components/Header';
 import SnackBar from 'src/components/SnackBar';
 import { useAppSelector } from 'src/hooks/reduxHooks';
@@ -17,7 +21,9 @@ const BaseLayout = ({ children }: BaseLayoutProps): JSX.Element => {
     <>
       <Wrapper>
         <Header />
-        <Main>{children}</Main>
+        <Main>
+          <ContentWrapper>{children}</ContentWrapper>
+        </Main>
         <footer>Footer</footer>
       </Wrapper>
       {type === 'error' && (

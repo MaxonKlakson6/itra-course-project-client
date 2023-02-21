@@ -8,7 +8,6 @@ import DefaultContainer from 'src/pages/Default/container/DefaultContainer';
 import CreateCollectionContainer from 'src/pages/Profile/containers/CreateCollectionContainer';
 import ChangeCollectionContainer from 'src/pages/Profile/containers/ChangeCollectionContainer';
 import PrivateRoute from 'src/router/PrivateRoute';
-import ItemsContainer from 'src/pages/Profile/containers/ItemsContainer';
 import CreateItemContainer from 'src/pages/Profile/containers/CreateItemContainer';
 import ItemContainer from 'src/pages/Item/container/ItemContainer';
 import CollectionContainer from 'src/pages/Collection/container/CollectionContainer';
@@ -20,7 +19,6 @@ const Router = () => (
     <Route path={ROUTE_NAMES.SIGN_UP} element={<SignUpContainer />} />
     <Route path={ROUTE_NAMES.SIGN_IN} element={<SignInContainer />} />
     <Route path={ROUTE_NAMES.ITEM} element={<ItemContainer />} />
-    <Route path={ROUTE_NAMES.PROFILE_ITEMS} element={<ItemsContainer />} />
     <Route path={ROUTE_NAMES.COLLECTION} element={<CollectionContainer />} />
     <Route element={<PrivateRoute />}>
       <Route path={ROUTE_NAMES.PROFILE} element={<ProfileContainer />} />

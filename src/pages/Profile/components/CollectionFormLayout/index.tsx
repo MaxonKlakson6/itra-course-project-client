@@ -1,6 +1,5 @@
 import { Tab } from '@mui/material';
 import { SyntheticEvent, useState } from 'react';
-import CancelIcon from '@mui/icons-material/Cancel';
 
 import {
   FormTabs,
@@ -9,19 +8,18 @@ import {
   Heading,
   Title,
   CloseButton,
-} from 'src/pages/Profile/components/MutateCollectionLayout/styles';
+} from 'src/static/styles/formStyles';
 import TabPanel from 'src/components/TabPanel';
-import MutateForm from 'src/pages/Profile/components/MutateCollectionForm';
-import { MutateFormProps } from 'src/pages/Profile/types/createCollectionProps';
-import { ROUTE_NAMES } from 'src/router/routeNames';
+import CollectionForm from 'src/pages/Profile/components/CollectionForm';
+import { CollectionFormProps } from 'src/pages/Profile/types/collectionFormProps';
 import defaultImage from 'src/static/images/default.jpg';
 
-interface MutateCollectionLayoutProps extends MutateFormProps {
+interface CollectionFormLayoutProps extends CollectionFormProps {
   imageUrl?: string;
   formTitle: string;
 }
 
-const MutateCollectionLayout = ({
+const CollectionFormLayout = ({
   formTitle,
   imageUrl,
   values,
@@ -35,7 +33,7 @@ const MutateCollectionLayout = ({
   deleteOptionalField,
   handleCreateCollection,
   handleChangeImageUrl,
-}: MutateCollectionLayoutProps): JSX.Element => {
+}: CollectionFormLayoutProps): JSX.Element => {
   const [tabValue, setTabValue] = useState<number>(0);
   const [image, setImage] = useState<string>(imageUrl || defaultImage);
 
@@ -51,16 +49,14 @@ const MutateCollectionLayout = ({
     <Wrapper>
       <Heading>
         <Title>{formTitle}</Title>
-        <CloseButton to={ROUTE_NAMES.PROFILE}>
-          <CancelIcon />
-        </CloseButton>
+        <CloseButton />
       </Heading>
       <FormTabs value={tabValue} onChange={handleChangeTab}>
         <Tab label='Form' />
         <Tab label='Preview' />
       </FormTabs>
       <TabPanel index={0} value={tabValue}>
-        <MutateForm
+        <CollectionForm
           image={image}
           values={values}
           errors={errors}
@@ -88,4 +84,4 @@ const MutateCollectionLayout = ({
   );
 };
 
-export default MutateCollectionLayout;
+export default CollectionFormLayout;

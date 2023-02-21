@@ -16,15 +16,15 @@ import OptionalField from 'src/pages/Collection/components/OptionalField';
 import {
   Cell,
   HeadingCell,
-} from 'src/pages/Collection/components/ItemTable/styles';
+} from 'src/pages/Collection/components/ItemsTable/styles';
 
 interface ItemTableProps {
   items: Item[];
   collection: Collection;
 }
 
-const ItemTable = ({ items, collection }: ItemTableProps) => (
-  <Paper sx={{ overflow: 'hidden', width: '1100px', margin: '0 auto' }}>
+const ItemsTable = ({ items, collection }: ItemTableProps) => (
+  <Paper sx={{ overflow: 'hidden', margin: '0 auto' }}>
     <TableContainer>
       <Table>
         <TableHead>
@@ -78,4 +78,4 @@ const ItemTable = ({ items, collection }: ItemTableProps) => (
   </Paper>
 );
 
-export default ItemTable;
+export default ItemsTable;

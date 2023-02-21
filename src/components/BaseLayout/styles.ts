@@ -12,3 +12,9 @@ export const Main = styled.main`
   display: flex;
   flex-direction: column;
 `;
+
+export const ContentWrapper = styled.div`
+  max-width: 1140px;
+  width: 100%;
+  margin: 0 auto;
+`;

@@ -3,12 +3,6 @@ import { Button } from '@mui/material';
 
 import { COLORS } from 'src/static/colors';
 
-export const Wrapper = styled.div`
-  max-width: 1140px;
-  width: 100%;
-  margin: 0 auto;
-`;
-
 export const Heading = styled.div`
   max-width: fit-content;
   margin: 0 auto;
@@ -35,6 +29,7 @@ export const CreateButton = styled(Button)`
 `;
 
 export const CollectionsHolder = styled.div`
+  width: 100%;
   margin-top: 50px;
   display: grid;
   grid-template-columns: repeat(3, 300px);

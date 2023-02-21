@@ -4,7 +4,7 @@ import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
 import { OptionalField } from 'src/types/collection';
-import { DescriptionField } from 'src/pages/Profile/components/MutateCollectionForm/styles';
+import { DescriptionField } from 'src/static/styles/formStyles';
 
 interface ItemOptionalFieldProps {
   optionalField: OptionalField;
@@ -40,7 +40,7 @@ const ItemOptionalFieldInput = ({
           control={
             <Checkbox
               name={optionalField.id}
-              value={optionalField.value}
+              checked={optionalField.value as boolean}
               onChange={handleCheckboxChange}
             />
           }

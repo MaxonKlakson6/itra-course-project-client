@@ -10,14 +10,14 @@ import {
   Wrapper,
   AuthButton,
 } from 'src/components/Profile/styles';
-import { ROUTE_NAMES } from 'src/router/routeNames';
+import { ROUTE_NAMES, ROUTES_WITH_ID } from 'src/router/routeNames';
 import { resetAuthState } from 'src/store/reducers/authSlice';
 import { authSelector } from 'src/store/selectors/authSelector';
 
 const Profile = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { token } = useAppSelector(authSelector);
+  const { token, userData } = useAppSelector(authSelector);
 
   const handleLogout = () => {
     localStorage.clear();
@@ -28,7 +28,7 @@ const Profile = () => {
   if (token) {
     return (
       <Wrapper>
-        <ProfileLink to={ROUTE_NAMES.PROFILE}>
+        <ProfileLink to={`${ROUTES_WITH_ID.PROFILE}/${userData.id}`}>
           <ProfileIcon />
         </ProfileLink>
         <LogoutButton onClick={handleLogout}>

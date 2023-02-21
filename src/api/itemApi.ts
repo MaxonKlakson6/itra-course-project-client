@@ -1,16 +1,17 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 
 import { baseQueryWithCheckAuth } from 'src/api/baseQuery';
-import { ItemMutationType } from 'src/pages/Profile/types/ItemMutationType';
+import { CreateItemRequest } from 'src/pages/Profile/types/createItemRequest';
 import { ErrorResponse } from 'src/types/errorResponse';
 import { Item } from 'src/types/Item';
+import { UpdateItemRequest } from 'src/pages/Profile/types/updateItemRequest';
 
 export const itemApi = createApi({
   reducerPath: 'items',
   baseQuery: baseQueryWithCheckAuth,
   tagTypes: ['Items'],
   endpoints: (builder) => ({
-    createItem: builder.mutation<string, ItemMutationType>({
+    createItem: builder.mutation<string, CreateItemRequest>({
       query: (body) => ({
         url: `/item`,
         method: 'POST',
@@ -36,7 +37,18 @@ export const itemApi = createApi({
       query: (id) => ({
         url: `item/${id}`,
       }),
+      keepUnusedDataFor: 0,
       transformErrorResponse: (response: ErrorResponse) => response.data.error,
+      providesTags: (result) => [{ type: 'Items', id: 'LIST' }],
+    }),
+    changeItem: builder.mutation<string, UpdateItemRequest>({
+      query: ({ id, ...body }) => ({
+        url: `item/${id}`,
+        method: 'PATCH',
+        body,
+      }),
+      transformErrorResponse: (response: ErrorResponse) => response.data.error,
+      invalidatesTags: [{ type: 'Items', id: 'LIST' }],
     }),
   }),
 });
@@ -45,4 +57,5 @@ export const {
   useCreateItemMutation,
   useGetAllCollectionItemsQuery,
   useGetItemQuery,
+  useChangeItemMutation,
 } = itemApi;

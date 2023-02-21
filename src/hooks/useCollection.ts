@@ -8,6 +8,7 @@ import { OptionalFieldTypes } from 'src/types/optionalFieldTypes';
 import { CollectionForm } from 'src/pages/Profile/types/collectionForm';
 import { CollectionMutationType } from 'src/pages/Profile/types/collectionMutationType';
 import { createOptionalFieldValue } from 'src/helpers/createOptionalFieldValue';
+import { subjectDefaultValue } from 'src/constants/subjects';
 
 interface UseCollectionProps {
   initialValues: CollectionForm;
@@ -29,13 +30,13 @@ export const useCollection = ({
     useFormik({
       initialValues: {
         title: initialValues.title || '',
-        subject: initialValues.subject || 'Books',
+        subject: initialValues.subject || subjectDefaultValue,
         description: initialValues.description || '',
       },
       enableReinitialize: true,
       validationSchema: collectionSchema,
       validateOnBlur: true,
-      onSubmit: async () => {
+      onSubmit: () => {
         submit({ values, optionalFields, image });
       },
     });

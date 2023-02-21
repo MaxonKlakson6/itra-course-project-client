@@ -2,9 +2,10 @@ import { Card, CardContent, CardMedia, Typography } from '@mui/material';
 import { useNavigate } from 'react-router';
 
 import Markdown from 'src/components/Markdown';
+import { ROUTES_WITH_ID } from 'src/router/routeNames';
 
 interface CollectionCardProps {
-  collectionId: number;
+  collectionId?: number;
   className?: string;
   image: string;
   title: string;
@@ -24,7 +25,7 @@ const CollectionCard = ({
 
   const handleNavigateToItems = () => {
     if (collectionId) {
-      navigate(`/profile-items/${collectionId}`);
+      navigate(`${ROUTES_WITH_ID.COLLECTION}/${collectionId}`);
     }
   };
 

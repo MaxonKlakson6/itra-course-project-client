@@ -1,6 +1,6 @@
 import { OptionalField } from 'src/types/collection';
 
-export interface ItemMutationType {
+export interface CreateItemRequest {
   collectionId: string;
   title: string;
   tags: string[];

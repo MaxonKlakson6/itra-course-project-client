@@ -9,6 +9,7 @@ export interface OptionalField {
 }
 
 export interface Collection {
+  UserId: number;
   id: number;
   ownerName: string;
   title: string;
