@@ -50,6 +50,14 @@ export const itemApi = createApi({
       transformErrorResponse: (response: ErrorResponse) => response.data.error,
       invalidatesTags: [{ type: 'Items', id: 'LIST' }],
     }),
+    deleteItem: builder.mutation<string, string>({
+      query: (id) => ({
+        url: `item/${id}`,
+        method: 'DELETE',
+      }),
+      transformErrorResponse: (response: ErrorResponse) => response.data.error,
+      invalidatesTags: [{ type: 'Items', id: 'LIST' }],
+    }),
   }),
 });
 
@@ -58,4 +66,5 @@ export const {
   useGetAllCollectionItemsQuery,
   useGetItemQuery,
   useChangeItemMutation,
+  useDeleteItemMutation,
 } = itemApi;

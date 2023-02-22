@@ -24,7 +24,7 @@ const CollectionLayout = ({
     <Heading>
       {!isReadOnly && (
         <CreateButton>
-          <Link to={`/${ROUTES_WITH_ID.CREATE_ITEM}/${collectionId}`}>
+          <Link to={`${ROUTES_WITH_ID.CREATE_ITEM}/${collectionId}`}>
             Create Item
           </Link>
         </CreateButton>

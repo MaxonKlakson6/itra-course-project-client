@@ -11,15 +11,26 @@ import Social from 'src/pages/Item/components/Social';
 interface ItemLayoutProps {
   collection: Collection;
   item: ItemType;
+  handleDeleteItem: () => void;
 }
 
-const ItemLayout = ({ item, collection }: ItemLayoutProps) => (
+const ItemLayout = ({
+  item,
+  collection,
+  handleDeleteItem,
+}: ItemLayoutProps) => (
   <Wrapper>
     <Heading>
       <CreateButton>
         <Link to={`${ROUTES_WITH_ID.CHANGE_ITEM}/${collection.id}/${item.id}`}>
           Update item
         </Link>
+      </CreateButton>
+      <CreateButton
+        sx={{ color: '#fff', marginLeft: '10px' }}
+        onClick={handleDeleteItem}
+      >
+        Delete
       </CreateButton>
     </Heading>
     <Item item={item} collection={collection} />
