@@ -34,7 +34,7 @@ const ItemLayout = ({
       </CreateButton>
     </Heading>
     <Item item={item} collection={collection} />
-    <Social />
+    <Social itemId={item.id} comments={item.comments} likes={item.likes} />
   </Wrapper>
 );
 
