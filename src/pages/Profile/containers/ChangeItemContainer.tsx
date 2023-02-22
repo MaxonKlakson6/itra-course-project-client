@@ -79,6 +79,7 @@ const ChangeItemContainer = () => {
   }
   return (
     <ItemFormLayout
+      title='Update item'
       tags={allTags}
       itemTags={form.itemTags}
       values={form.values}

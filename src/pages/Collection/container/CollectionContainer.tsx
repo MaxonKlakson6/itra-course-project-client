@@ -25,7 +25,7 @@ const CollectionContainer = () => {
       isReadOnly={collection?.UserId !== userData.id}
       collectionId={Number(id)}
       collection={collection as Collection}
-      items={items}
+      items={[...items]}
     />
   );
 };

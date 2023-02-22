@@ -7,7 +7,12 @@ import {
 } from 'src/static/styles/formStyles';
 import { ItemFormProps } from 'src/pages/Profile/types/itemFormProps';
 
+interface ItemFormLayoutProps extends ItemFormProps {
+  title: string;
+}
+
 const ItemFormLayout = ({
+  title,
   tags,
   itemTags,
   values,
@@ -21,10 +26,10 @@ const ItemFormLayout = ({
   handleDeleteTag,
   handleChangeOptionalField,
   handleSubmit,
-}: ItemFormProps) => (
+}: ItemFormLayoutProps) => (
   <Wrapper>
     <Heading>
-      <Title>Create Item</Title>
+      <Title>{title}</Title>
       <CloseButton />
     </Heading>
     <ItemForm

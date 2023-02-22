@@ -65,6 +65,7 @@ const CreateItemContainer = () => {
 
   return (
     <ItemFormLayout
+      title='Create item'
       values={form.values}
       tags={allTags}
       itemTags={form.itemTags}

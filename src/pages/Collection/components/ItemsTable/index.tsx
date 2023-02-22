@@ -25,8 +25,8 @@ interface ItemTableProps {
 
 const ItemsTable = ({ items, collection }: ItemTableProps) => (
   <Paper sx={{ overflow: 'hidden', margin: '0 auto' }}>
-    <TableContainer>
-      <Table>
+    <TableContainer sx={{ maxHeight: '500px' }}>
+      <Table stickyHeader>
         <TableHead>
           <TableRow>
             <HeadingCell>Title</HeadingCell>
