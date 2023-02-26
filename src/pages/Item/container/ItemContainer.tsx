@@ -6,8 +6,11 @@ import ItemLayout from 'src/pages/Item/components/ItemLayout';
 import { Collection } from 'src/types/collection';
 import { Item } from 'src/types/Item';
 import { useAlertMessages } from 'src/hooks/useAlertMessages';
+import { useAppSelector } from 'src/hooks/reduxHooks';
+import { authSelector } from 'src/store/selectors/authSelector';
 
 const ItemContainer = () => {
+  const { userData } = useAppSelector(authSelector);
   const { collectionId, itemId } = useParams();
 
   const { data: collection, isLoading: isLoadingCollection } =
@@ -30,6 +33,7 @@ const ItemContainer = () => {
 
   return (
     <ItemLayout
+      isReadOnly={collection?.UserId !== userData.id}
       collection={collection as Collection}
       item={item as Item}
       handleDeleteItem={handleDeleteItem}

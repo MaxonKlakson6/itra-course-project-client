@@ -32,7 +32,7 @@ export const CollectionsHolder = styled.div`
   width: 100%;
   margin-top: 50px;
   display: grid;
-  grid-template-columns: repeat(3, 300px);
+  grid-template-columns: repeat(auto-fill, 300px);
   justify-content: space-between;
   row-gap: 30px;
 `;
