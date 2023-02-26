@@ -1,5 +1,5 @@
 export const ROUTE_NAMES = {
-  DEFAULT: '/default',
+  MAIN: '/main',
   SIGN_UP: '/sign-up',
   SIGN_IN: '/sign-in',
   PROFILE: '/profile/:ownerId',

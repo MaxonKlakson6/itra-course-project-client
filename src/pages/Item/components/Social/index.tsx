@@ -16,7 +16,7 @@ import {
   SocialBlock,
   UserName,
 } from 'src/pages/Item/components/Social/styles';
-import { DescriptionField, SubmitButton } from 'src/static/styles/formStyles';
+import { SubmitButton } from 'src/static/styles/formStyles';
 
 interface SocialProps {
   itemId: number;

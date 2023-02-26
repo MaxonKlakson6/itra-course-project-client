@@ -5,6 +5,7 @@ import { CreateItemRequest } from 'src/pages/Profile/types/createItemRequest';
 import { ErrorResponse } from 'src/types/errorResponse';
 import { Item } from 'src/types/Item';
 import { UpdateItemRequest } from 'src/pages/Profile/types/updateItemRequest';
+import { SearchResponse } from 'src/pages/Main/types/searchResponse';
 
 export const itemApi = createApi({
   reducerPath: 'items',
@@ -39,7 +40,7 @@ export const itemApi = createApi({
       }),
       keepUnusedDataFor: 0,
       transformErrorResponse: (response: ErrorResponse) => response.data.error,
-      providesTags: (result) => [{ type: 'Items', id: 'LIST' }],
+      providesTags: () => [{ type: 'Items', id: 'LIST' }],
     }),
     changeItem: builder.mutation<string, UpdateItemRequest>({
       query: ({ id, ...body }) => ({
@@ -58,6 +59,24 @@ export const itemApi = createApi({
       transformErrorResponse: (response: ErrorResponse) => response.data.error,
       invalidatesTags: [{ type: 'Items', id: 'LIST' }],
     }),
+    getRecent: builder.query<Item[], void>({
+      query: () => ({
+        url: 'item/recent',
+      }),
+      providesTags: (result) =>
+        result
+          ? [
+              ...result.map(({ id }) => ({ type: 'Items' as const, id })),
+              { type: 'Items', id: 'LIST' },
+            ]
+          : [{ type: 'Items', id: 'LIST' }],
+      transformErrorResponse: (response: ErrorResponse) => response.data.error,
+    }),
+    search: builder.query<SearchResponse[], string>({
+      query: (text) => ({
+        url: `item/search/${text}`,
+      }),
+    }),
   }),
 });
 
@@ -67,4 +86,6 @@ export const {
   useGetItemQuery,
   useChangeItemMutation,
   useDeleteItemMutation,
+  useGetRecentQuery,
+  useLazySearchQuery,
 } = itemApi;

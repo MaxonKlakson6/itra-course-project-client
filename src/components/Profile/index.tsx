@@ -22,7 +22,7 @@ const Profile = () => {
   const handleLogout = () => {
     localStorage.clear();
     dispatch(resetAuthState());
-    navigate(ROUTE_NAMES.DEFAULT);
+    navigate(ROUTE_NAMES.MAIN);
   };
 
   if (token) {

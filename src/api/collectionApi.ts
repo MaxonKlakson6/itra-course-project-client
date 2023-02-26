@@ -59,6 +59,19 @@ export const collectionApi = createApi({
       invalidatesTags: [{ type: 'Collections', id: 'LIST' }],
       transformErrorResponse: (response: ErrorResponse) => response.data.error,
     }),
+    getBiggest: builder.query<Collection[], void>({
+      query: () => ({
+        url: '/collection',
+      }),
+      providesTags: (result) =>
+        result
+          ? [
+              ...result.map(({ id }) => ({ type: 'Collections' as const, id })),
+              { type: 'Collections', id: 'LIST' },
+            ]
+          : [{ type: 'Collections', id: 'LIST' }],
+      transformErrorResponse: (response: ErrorResponse) => response.data.error,
+    }),
   }),
 });
 
@@ -68,4 +81,5 @@ export const {
   useCreateCollectionMutation,
   useDeleteCollectionMutation,
   useChangeCollectionMutation,
+  useGetBiggestQuery,
 } = collectionApi;

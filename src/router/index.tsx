@@ -4,7 +4,7 @@ import { ROUTE_NAMES } from 'src/router/routeNames';
 import SignUpContainer from 'src/pages/SignUp/container/SignUpContainer';
 import SignInContainer from 'src/pages/SignIn/container/SignInContainer';
 import ProfileContainer from 'src/pages/Profile/containers/ProfileContainer';
-import DefaultContainer from 'src/pages/Default/container/DefaultContainer';
+import MainContainer from 'src/pages/Main/container/MainContainer';
 import CreateCollectionContainer from 'src/pages/Profile/containers/CreateCollectionContainer';
 import ChangeCollectionContainer from 'src/pages/Profile/containers/ChangeCollectionContainer';
 import PrivateRoute from 'src/router/PrivateRoute';
@@ -15,7 +15,7 @@ import ChangeItemContainer from 'src/pages/Profile/containers/ChangeItemContaine
 
 const Router = () => (
   <Routes>
-    <Route path={ROUTE_NAMES.DEFAULT} element={<DefaultContainer />} />
+    <Route path={ROUTE_NAMES.MAIN} element={<MainContainer />} />
     <Route path={ROUTE_NAMES.SIGN_UP} element={<SignUpContainer />} />
     <Route path={ROUTE_NAMES.SIGN_IN} element={<SignInContainer />} />
     <Route path={ROUTE_NAMES.ITEM} element={<ItemContainer />} />
@@ -33,7 +33,7 @@ const Router = () => (
       <Route path={ROUTE_NAMES.CREATE_ITEM} element={<CreateItemContainer />} />
       <Route path={ROUTE_NAMES.CHANGE_ITEM} element={<ChangeItemContainer />} />
     </Route>
-    <Route path='/' element={<Navigate to={ROUTE_NAMES.DEFAULT} />} />
+    <Route path='/' element={<Navigate to={ROUTE_NAMES.MAIN} />} />
   </Routes>
 );
 

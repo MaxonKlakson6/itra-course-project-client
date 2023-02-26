@@ -8,4 +8,5 @@ export interface Item {
   optionalFields: OptionalField[];
   comments: Comment[];
   likes: number[];
+  CollectionId: number;
 }

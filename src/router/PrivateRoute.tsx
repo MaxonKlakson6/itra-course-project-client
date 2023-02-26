@@ -7,7 +7,7 @@ import { ROUTE_NAMES } from 'src/router/routeNames';
 const PrivateRoute = () => {
   const { token } = useAppSelector(authSelector);
 
-  return token ? <Outlet /> : <Navigate to={ROUTE_NAMES.DEFAULT} />;
+  return token ? <Outlet /> : <Navigate to={ROUTE_NAMES.MAIN} />;
 };
 
 export default PrivateRoute;

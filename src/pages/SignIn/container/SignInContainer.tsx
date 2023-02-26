@@ -42,7 +42,7 @@ const SignInContainer = (): JSX.Element => {
   useEffect(() => {
     if (isSuccess && data) {
       dispatch(saveToken(data));
-      navigate(ROUTE_NAMES.DEFAULT);
+      navigate(ROUTE_NAMES.MAIN);
     }
   }, [isSuccess]);
 
