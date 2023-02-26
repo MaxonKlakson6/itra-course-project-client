@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { Tab, Tabs } from '@mui/material';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
+import { Link } from 'react-router-dom';
 
 import { COLORS } from 'src/static/colors';
 
@@ -19,12 +20,17 @@ export const NavBar = styled.nav`
   align-items: center;
 `;
 
-export const TabsHolder = styled.div`
+export const PageLinksHolder = styled.div`
   max-width: 600px;
   display: flex;
   flex: 1 1 auto;
   align-items: center;
   justify-content: space-between;
+`;
+
+export const PageLink = styled(Link)`
+  font-family: Roboto, sans-serif;
+  color: #fff;
 `;
 
 export const WhiteTab = styled(Tab)`
