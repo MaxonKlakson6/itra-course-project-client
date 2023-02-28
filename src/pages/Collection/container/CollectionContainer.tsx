@@ -7,6 +7,7 @@ import { Collection } from 'src/types/collection';
 import { useAppSelector } from 'src/hooks/reduxHooks';
 import { authSelector } from 'src/store/selectors/authSelector';
 import { readOnlyModeSelector } from 'src/store/selectors/readOnlyModeSelector';
+import Loader from 'src/components/Loader';
 
 const CollectionContainer = () => {
   const { id } = useParams();
@@ -19,7 +20,7 @@ const CollectionContainer = () => {
     useGetAllCollectionItemsQuery(Number(id));
 
   if (isLoadingCollection || isLoadingItems) {
-    return <h1>Loading...</h1>;
+    return <Loader />;
   }
 
   return (

@@ -11,6 +11,7 @@ import {
 import { useAlertMessages } from 'src/hooks/useAlertMessages';
 import { useGetUserQuery } from 'src/api/userApi';
 import { changeMode } from 'src/store/reducers/interactionModeSlice';
+import Loader from 'src/components/Loader';
 
 const ProfileContainer = () => {
   const { ownerId } = useParams();
@@ -33,7 +34,7 @@ const ProfileContainer = () => {
   }, []);
 
   if (isLoading) {
-    return <h1>Loading...</h1>;
+    return <Loader />;
   }
 
   return (

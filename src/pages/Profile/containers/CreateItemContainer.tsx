@@ -11,6 +11,7 @@ import { CreateItemRequest } from 'src/pages/Profile/types/createItemRequest';
 import { validateItemTags } from 'src/validation/validateItemTags';
 import { validateItemOptionalFields } from 'src/validation/validateItemOptionalFields';
 import { ERROR_MESSAGES } from 'src/constants/errorMessages';
+import Loader from 'src/components/Loader';
 
 const CreateItemContainer = () => {
   const { collectionId } = useParams();
@@ -60,7 +61,7 @@ const CreateItemContainer = () => {
   }, [error]);
 
   if (isLoadingTags || isLoadingCollection) {
-    return <h1>Loading ...</h1>;
+    return <Loader />;
   }
 
   return (

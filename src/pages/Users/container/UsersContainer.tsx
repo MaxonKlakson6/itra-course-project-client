@@ -5,6 +5,7 @@ import {
   useToggleBlockUserMutation,
 } from 'src/api/adminApi';
 import UsersLayout from 'src/pages/Users/components/UsersLayout';
+import Loader from 'src/components/Loader';
 
 const UsersContainer = () => {
   const { data: users = [], isLoading } = useGetUsersQuery();
@@ -25,7 +26,7 @@ const UsersContainer = () => {
   };
 
   if (isLoading) {
-    return <h1>Loading...</h1>;
+    return <Loader />;
   }
 
   return (

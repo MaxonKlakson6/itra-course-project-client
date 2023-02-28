@@ -12,6 +12,7 @@ import { loadImage } from 'src/helpers/loadImage';
 import { useAlertMessages } from 'src/hooks/useAlertMessages';
 import { CollectionMutationType } from 'src/pages/Profile/types/collectionMutationType';
 import { OptionalField } from 'src/types/collection';
+import Loader from 'src/components/Loader';
 
 const ChangeCollectionContainer = () => {
   const { id } = useParams();
@@ -73,7 +74,7 @@ const ChangeCollectionContainer = () => {
   }, [error, isError]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   return (

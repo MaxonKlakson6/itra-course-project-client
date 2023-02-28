@@ -9,6 +9,7 @@ import { useAlertMessages } from 'src/hooks/useAlertMessages';
 import { useAppSelector } from 'src/hooks/reduxHooks';
 import { authSelector } from 'src/store/selectors/authSelector';
 import { readOnlyModeSelector } from 'src/store/selectors/readOnlyModeSelector';
+import Loader from 'src/components/Loader';
 
 const ItemContainer = () => {
   const { collectionId, itemId } = useParams();
@@ -30,7 +31,7 @@ const ItemContainer = () => {
   };
 
   if (isLoadingCollection || isLoadingItem) {
-    return <h1>Loading...</h1>;
+    return <Loader />;
   }
 
   return (

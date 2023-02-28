@@ -6,6 +6,7 @@ import { useGetRecentQuery, useLazySearchQuery } from 'src/api/itemApi';
 import { useGetTagsQuery } from 'src/api/tagsApi';
 import { useAppDispatch } from 'src/hooks/reduxHooks';
 import { changeMode } from 'src/store/reducers/interactionModeSlice';
+import Loader from 'src/components/Loader';
 
 const MainContainer = () => {
   const dispatch = useAppDispatch();
@@ -38,7 +39,7 @@ const MainContainer = () => {
   }, []);
 
   if (isLoadingCollections || isLoadingItems) {
-    return <h1>Loading...</h1>;
+    return <Loader />;
   }
 
   return (

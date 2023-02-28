@@ -12,6 +12,7 @@ import { useAlertMessages } from 'src/hooks/useAlertMessages';
 import { validateItemTags } from 'src/validation/validateItemTags';
 import { ERROR_MESSAGES } from 'src/constants/errorMessages';
 import { validateItemOptionalFields } from 'src/validation/validateItemOptionalFields';
+import Loader from 'src/components/Loader';
 
 const ChangeItemContainer = () => {
   const { itemId, collectionId } = useParams();
@@ -75,7 +76,7 @@ const ChangeItemContainer = () => {
   }, [error]);
 
   if (isLoadingItem || isLoadingCollection || isLoadingTags) {
-    return <h1>Loading...</h1>;
+    return <Loader />;
   }
   return (
     <ItemFormLayout
