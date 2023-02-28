@@ -42,7 +42,7 @@ const CollectionCard = ({
         sx={{ height: 200 }}
       />
       <CardContent>
-        <Markdown value={title} />
+        <Typography variant='h5'>{title}</Typography>
         <Typography variant='h6'>{subject}</Typography>
         <Markdown value={description} />
       </CardContent>
