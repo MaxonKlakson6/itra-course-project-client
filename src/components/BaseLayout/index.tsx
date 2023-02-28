@@ -8,6 +8,7 @@ import {
 import Header from 'src/components/Header';
 import SnackBar from 'src/components/SnackBar';
 import { useAppSelector } from 'src/hooks/reduxHooks';
+import { alertMessageSelector } from 'src/store/selectors/alertMessageSelector';
 import { createPosition } from 'src/helpers/createPosition';
 
 interface BaseLayoutProps {
@@ -15,7 +16,7 @@ interface BaseLayoutProps {
 }
 
 const BaseLayout = ({ children }: BaseLayoutProps): JSX.Element => {
-  const { type, value } = useAppSelector((state) => state.message.message);
+  const { type, value } = useAppSelector(alertMessageSelector);
 
   return (
     <>

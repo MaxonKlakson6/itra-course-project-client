@@ -13,7 +13,6 @@ export const validateItemOptionalFields = (optionalFields: OptionalField[]) =>
         return true;
       }
       default: {
-        console.log(typeof optionalField.value);
         return !!optionalField.value;
       }
     }

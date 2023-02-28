@@ -1,6 +1,4 @@
-import { Link } from 'react-router-dom';
 import { ChangeEvent, FormEvent } from 'react';
-import { TagCloud } from 'react-tagcloud';
 
 import { Collection } from 'src/types/collection';
 import { Item } from 'src/types/Item';
@@ -16,6 +14,8 @@ import {
   Wrapper,
 } from 'src/pages/Main/components/MainLayout/styles';
 import { Title } from 'src/static/styles/formStyles';
+import { ROUTES_WITH_ID } from 'src/router/routeNames';
+import { CloudTag } from 'src/pages/Main/types/cloudTag';
 
 interface MainLayoutProps {
   tags: string[];
@@ -25,7 +25,7 @@ interface MainLayoutProps {
   items: Item[];
   handleSearchTextChange: (event: ChangeEvent<HTMLInputElement>) => void;
   handleSearch: (event: FormEvent) => void;
-  handleSelectTag: (tag: { value: string; count: number }) => void;
+  handleSelectTag: (tag: CloudTag) => void;
 }
 
 const MainLayout = ({
@@ -48,7 +48,7 @@ const MainLayout = ({
       {searchedItems.map((searchedItem) => (
         <ItemLink
           key={`Search-${searchedItem.id}`}
-          to={`/item/${searchedItem.CollectionId}/${searchedItem.id}`}
+          to={`${ROUTES_WITH_ID.ITEM}/${searchedItem.CollectionId}/${searchedItem.id}`}
           style={{ marginRight: '20px' }}
         >
           {searchedItem.title}
@@ -85,7 +85,7 @@ const MainLayout = ({
         {items.map((item) => (
           <ItemLink
             key={`Item-${item.id}`}
-            to={`/item/${item.CollectionId}/${item.id}`}
+            to={`${ROUTES_WITH_ID.ITEM}/${item.CollectionId}/${item.id}`}
             style={{ marginRight: '20px' }}
           >
             {item.title}

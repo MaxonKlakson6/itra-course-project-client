@@ -30,9 +30,7 @@ const Social = ({ itemId, comments, likes }: SocialProps) => {
   const [allComments, setAllComments] = useState<Comment[]>([...comments]);
   const [allLikes, setAllLikes] = useState<number[]>(likes);
 
-  const wsServer = io(
-    'https://itra-course-project-server-production.up.railway.app'
-  );
+  const wsServer = io(import.meta.env.VITE_SERVER_URL);
 
   const handleChangeComment = (event: ChangeEvent<HTMLTextAreaElement>) => {
     const { value } = event.target;

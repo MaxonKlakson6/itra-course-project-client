@@ -8,6 +8,7 @@ import { useAppDispatch } from 'src/hooks/reduxHooks';
 import { changeMode } from 'src/store/reducers/interactionModeSlice';
 import Loader from 'src/components/Loader';
 import ErrorHandler from 'src/components/ErrorHandler';
+import { CloudTag } from 'src/pages/Main/types/cloudTag';
 
 const MainContainer = () => {
   const dispatch = useAppDispatch();
@@ -39,7 +40,7 @@ const MainContainer = () => {
     }
   };
 
-  const handleSelectTag = ({ value }: { value: string; count: number }) => {
+  const handleSelectTag = ({ value }: CloudTag) => {
     setSearchText(value);
     search(value);
   };

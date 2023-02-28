@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import { Checkbox, FormControlLabel, TextField } from '@mui/material';
 import { ChangeEvent } from 'react';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';

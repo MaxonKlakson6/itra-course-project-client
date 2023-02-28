@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import { Autocomplete, TextField } from '@mui/material';
 import { ChangeEvent, SyntheticEvent } from 'react';
 

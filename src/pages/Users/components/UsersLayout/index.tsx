@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { User } from 'src/types/user';
 import { userColumns } from 'src/constants/userColumns';
 import Tools from 'src/pages/Users/components/Tools';
+import { ROUTES_WITH_ID } from 'src/router/routeNames';
 
 interface UsersLayoutProps {
   users: User[];
@@ -24,7 +25,9 @@ const UsersLayout = ({
       headerName: 'Name',
       flex: 1,
       renderCell: (params) => (
-        <Link to={`/profile/${params.row.id}`}>{params.row.name}</Link>
+        <Link to={`${ROUTES_WITH_ID.PROFILE}/${params.row.id}`}>
+          {params.row.name}
+        </Link>
       ),
     },
     ...userColumns,
@@ -45,16 +48,14 @@ const UsersLayout = ({
   ];
 
   return (
-    <div>
-      <div style={{ height: '400px' }}>
-        <DataGrid
-          columns={columns}
-          rows={[...users]}
-          disableColumnMenu
-          disableExtendRowFullWidth
-          hideFooter
-        />
-      </div>
+    <div style={{ height: '400px' }}>
+      <DataGrid
+        columns={columns}
+        rows={[...users]}
+        disableColumnMenu
+        disableExtendRowFullWidth
+        hideFooter
+      />
     </div>
   );
 };

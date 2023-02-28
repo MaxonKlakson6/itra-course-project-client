@@ -22,13 +22,6 @@ export const adminApi = createApi({
             ]
           : [{ type: 'Users', id: 'LIST' }],
     }),
-    deleteUser: builder.mutation<string, number>({
-      query: (id) => ({
-        url: `/admin/user/${id}`,
-        method: 'DELETE',
-      }),
-      invalidatesTags: [{ type: 'Users', id: 'LIST' }],
-    }),
     toggleBlockUser: builder.mutation<string, number>({
       query: (id) => ({
         url: `/admin/block-status/${id}`,
@@ -43,12 +36,19 @@ export const adminApi = createApi({
       }),
       invalidatesTags: [{ type: 'Users', id: 'LIST' }],
     }),
+    deleteUser: builder.mutation<string, number>({
+      query: (id) => ({
+        url: `/admin/user/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: [{ type: 'Users', id: 'LIST' }],
+    }),
   }),
 });
 
 export const {
   useGetUsersQuery,
-  useDeleteUserMutation,
   useToggleBlockUserMutation,
   useMakeAdminMutation,
+  useDeleteUserMutation,
 } = adminApi;

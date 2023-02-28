@@ -1,5 +1,4 @@
 import { ChangeEvent, FormEvent } from 'react';
-import { TextField } from '@mui/material';
 
 import { Form } from 'src/pages/Main/components/SearchForm/styles';
 import { Input } from 'src/components/InputWithError/styles';

@@ -17,6 +17,7 @@ export const ROUTES_WITH_ID = {
   COLLECTION: '/collection',
   CREATE_COLLECTION: '/create-collection',
   CHANGE_COLLECTION: '/change-collection',
+  ITEM: '/item',
   CREATE_ITEM: '/create-item',
   CHANGE_ITEM: '/change-item',
 };

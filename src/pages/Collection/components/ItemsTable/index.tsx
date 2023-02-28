@@ -17,6 +17,7 @@ import {
   Cell,
   HeadingCell,
 } from 'src/pages/Collection/components/ItemsTable/styles';
+import { ROUTES_WITH_ID } from 'src/router/routeNames';
 
 interface ItemTableProps {
   items: Item[];
@@ -41,7 +42,7 @@ const ItemsTable = ({ items, collection }: ItemTableProps) => (
           {items.map((item) => (
             <TableRow key={item.id}>
               <Cell>
-                <Link to={`/item/${collection.id}/${item.id}`}>
+                <Link to={`${ROUTES_WITH_ID.ITEM}/${collection.id}/${item.id}`}>
                   {item.title}
                 </Link>
               </Cell>

@@ -12,14 +12,13 @@ export const itemApi = createApi({
   baseQuery: baseQueryWithCheckAuth,
   tagTypes: ['Items'],
   endpoints: (builder) => ({
-    createItem: builder.mutation<string, CreateItemRequest>({
-      query: (body) => ({
-        url: `/item`,
-        method: 'POST',
-        body,
+    getItem: builder.query<Item, number>({
+      query: (id) => ({
+        url: `item/${id}`,
       }),
-      invalidatesTags: [{ type: 'Items', id: 'LIST' }],
+      keepUnusedDataFor: 0,
       transformErrorResponse: (response: ErrorResponse) => response.data.error,
+      providesTags: () => [{ type: 'Items', id: 'LIST' }],
     }),
     getAllCollectionItems: builder.query<Item[], number>({
       query: (collectionId) => ({
@@ -33,31 +32,6 @@ export const itemApi = createApi({
               { type: 'Items', id: 'LIST' },
             ]
           : [{ type: 'Items', id: 'LIST' }],
-    }),
-    getItem: builder.query<Item, number>({
-      query: (id) => ({
-        url: `item/${id}`,
-      }),
-      keepUnusedDataFor: 0,
-      transformErrorResponse: (response: ErrorResponse) => response.data.error,
-      providesTags: () => [{ type: 'Items', id: 'LIST' }],
-    }),
-    changeItem: builder.mutation<string, UpdateItemRequest>({
-      query: ({ id, ...body }) => ({
-        url: `item/${id}`,
-        method: 'PATCH',
-        body,
-      }),
-      transformErrorResponse: (response: ErrorResponse) => response.data.error,
-      invalidatesTags: [{ type: 'Items', id: 'LIST' }],
-    }),
-    deleteItem: builder.mutation<string, string>({
-      query: (id) => ({
-        url: `item/${id}`,
-        method: 'DELETE',
-      }),
-      transformErrorResponse: (response: ErrorResponse) => response.data.error,
-      invalidatesTags: [{ type: 'Items', id: 'LIST' }],
     }),
     getRecent: builder.query<Item[], void>({
       query: () => ({
@@ -77,15 +51,41 @@ export const itemApi = createApi({
         url: `item/search/${text}`,
       }),
     }),
+    createItem: builder.mutation<string, CreateItemRequest>({
+      query: (body) => ({
+        url: `/item`,
+        method: 'POST',
+        body,
+      }),
+      invalidatesTags: [{ type: 'Items', id: 'LIST' }],
+      transformErrorResponse: (response: ErrorResponse) => response.data.error,
+    }),
+    changeItem: builder.mutation<string, UpdateItemRequest>({
+      query: ({ id, ...body }) => ({
+        url: `item/${id}`,
+        method: 'PATCH',
+        body,
+      }),
+      transformErrorResponse: (response: ErrorResponse) => response.data.error,
+      invalidatesTags: [{ type: 'Items', id: 'LIST' }],
+    }),
+    deleteItem: builder.mutation<string, string>({
+      query: (id) => ({
+        url: `item/${id}`,
+        method: 'DELETE',
+      }),
+      transformErrorResponse: (response: ErrorResponse) => response.data.error,
+      invalidatesTags: [{ type: 'Items', id: 'LIST' }],
+    }),
   }),
 });
 
 export const {
-  useCreateItemMutation,
-  useGetAllCollectionItemsQuery,
   useGetItemQuery,
-  useChangeItemMutation,
-  useDeleteItemMutation,
+  useGetAllCollectionItemsQuery,
   useGetRecentQuery,
   useLazySearchQuery,
+  useCreateItemMutation,
+  useChangeItemMutation,
+  useDeleteItemMutation,
 } = itemApi;
