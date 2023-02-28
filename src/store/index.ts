@@ -42,6 +42,7 @@ export const store = configureStore({
       adminApi.middleware,
       userApi.middleware
     ),
+  devTools: import.meta.env.MODE !== 'production',
 });
 
 export const persistor = persistStore(store);
