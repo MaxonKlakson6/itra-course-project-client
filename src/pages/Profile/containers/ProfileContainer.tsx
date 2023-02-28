@@ -25,6 +25,7 @@ const ProfileContainer = () => {
 
   return (
     <ProfileLayout
+      userId={Number(ownerId)}
       isReadOnly={Number(ownerId) !== userData.id}
       userName={userData.name}
       collections={data}

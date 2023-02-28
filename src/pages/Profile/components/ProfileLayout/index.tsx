@@ -7,11 +7,12 @@ import {
   NameTitle,
 } from 'src/static/styles/profileStyles';
 import CollectionManager from 'src/pages/Profile/components/CollectionManager';
-import { ROUTE_NAMES } from 'src/router/routeNames';
+import { ROUTES_WITH_ID } from 'src/router/routeNames';
 import { Collection } from 'src/types/collection';
 import CollectionCard from 'src/components/CollectionCard';
 
 interface ProfileLayoutProps {
+  userId: number;
   isReadOnly: boolean;
   userName: string;
   collections: Collection[];
@@ -19,6 +20,7 @@ interface ProfileLayoutProps {
 }
 
 const ProfileLayout = ({
+  userId,
   isReadOnly,
   userName,
   collections,
@@ -29,7 +31,9 @@ const ProfileLayout = ({
       <NameTitle>{userName}</NameTitle>
       {!isReadOnly && (
         <CreateButton variant='contained'>
-          <Link to={ROUTE_NAMES.CREATE_COLLECTION}>Create collection</Link>
+          <Link to={`${ROUTES_WITH_ID.CREATE_COLLECTION}/${userId}`}>
+            Create collection
+          </Link>
         </CreateButton>
       )}
     </Heading>

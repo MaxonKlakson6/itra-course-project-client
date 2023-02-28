@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useParams } from 'react-router';
 
 import CollectionFormLayout from 'src/pages/Profile/components/CollectionFormLayout';
 import { subjectDefaultValue } from 'src/constants/subjects';
@@ -12,6 +13,7 @@ import { ERROR_MESSAGES } from 'src/constants/errorMessages';
 import defaultImage from 'src/static/images/default.jpg';
 
 const CreateCollectionContainer = () => {
+  const { userId } = useParams();
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [createCollection, { data, error, isError }] =
     useCreateCollectionMutation();
@@ -32,9 +34,10 @@ const CreateCollectionContainer = () => {
     const imageUrl = image ? await loadImage(image) : defaultImage;
 
     const collection = {
-      image: imageUrl,
       ...values,
       optionalFields,
+      image: imageUrl,
+      userId: Number(userId),
     };
     createCollection(collection);
   };

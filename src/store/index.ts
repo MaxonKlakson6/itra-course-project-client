@@ -7,6 +7,7 @@ import { authPersistConfig } from 'src/store/persistConfig/authConfig';
 import { collectionApi } from 'src/api/collectionApi';
 import { tagsApi } from 'src/api/tagsApi';
 import { itemApi } from 'src/api/itemApi';
+import { adminApi } from 'src/api/adminApi';
 import authReducer, { AuthInitialState } from 'src/store/reducers/authSlice';
 import messageReducer from 'src/store/reducers/alertMessagesSlice';
 
@@ -16,6 +17,7 @@ export const store = configureStore({
     [collectionApi.reducerPath]: collectionApi.reducer,
     [itemApi.reducerPath]: itemApi.reducer,
     [tagsApi.reducerPath]: tagsApi.reducer,
+    [adminApi.reducerPath]: adminApi.reducer,
     message: messageReducer,
     auth: persistReducer<AuthInitialState>(authPersistConfig, authReducer),
   },
@@ -26,7 +28,8 @@ export const store = configureStore({
       authApi.middleware,
       collectionApi.middleware,
       tagsApi.middleware,
-      itemApi.middleware
+      itemApi.middleware,
+      adminApi.middleware
     ),
 });
 

@@ -40,6 +40,7 @@ const ChangeCollectionContainer = () => {
       ...values,
       optionalFields,
     };
+
     changeCollection({ id: Number(id), body: collection });
   };
 

@@ -12,6 +12,8 @@ import CreateItemContainer from 'src/pages/Profile/containers/CreateItemContaine
 import ItemContainer from 'src/pages/Item/container/ItemContainer';
 import CollectionContainer from 'src/pages/Collection/container/CollectionContainer';
 import ChangeItemContainer from 'src/pages/Profile/containers/ChangeItemContainer';
+import AdminRoute from 'src/router/AdminRoute';
+import UsersContainer from 'src/pages/Users/container/UsersContainer';
 
 const Router = () => (
   <Routes>
@@ -32,6 +34,9 @@ const Router = () => (
       />
       <Route path={ROUTE_NAMES.CREATE_ITEM} element={<CreateItemContainer />} />
       <Route path={ROUTE_NAMES.CHANGE_ITEM} element={<ChangeItemContainer />} />
+      <Route element={<AdminRoute />}>
+        <Route path={ROUTE_NAMES.USERS} element={<UsersContainer />} />
+      </Route>
     </Route>
     <Route path='/' element={<Navigate to={ROUTE_NAMES.MAIN} />} />
   </Routes>

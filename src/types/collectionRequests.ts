@@ -1,11 +1,12 @@
 import { Collection } from 'src/types/collection';
 
-export type CreateCollectionRequest = Omit<
-  Collection,
-  'ownerName' | 'id' | 'UserId'
->;
+export type CollectionRequest = Omit<Collection, 'ownerName' | 'id' | 'UserId'>;
+
+export interface CreateCollectionRequest {
+  userId: number;
+}
 
 export interface ChangeCollectionRequest {
   id: number;
-  body: CreateCollectionRequest;
+  body: CollectionRequest;
 }

@@ -1,9 +1,9 @@
 import { Roles } from 'src/types/roles';
 
-export interface UserData {
-  token: string;
-  email: string;
+export interface User {
   id: number;
   name: string;
+  email: string;
+  isBlocked: boolean;
   role: Roles;
 }

@@ -13,6 +13,7 @@ const initialState: AuthInitialState = {
     id: 0,
     email: '',
     name: '',
+    role: 'USER',
   },
 };
 
