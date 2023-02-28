@@ -12,7 +12,6 @@ import {
 import TabPanel from 'src/components/TabPanel';
 import CollectionForm from 'src/pages/Profile/components/CollectionForm';
 import { CollectionFormProps } from 'src/pages/Profile/types/collectionFormProps';
-import defaultImage from 'src/static/images/default.jpg';
 
 interface CollectionFormLayoutProps extends CollectionFormProps {
   imageUrl?: string;
