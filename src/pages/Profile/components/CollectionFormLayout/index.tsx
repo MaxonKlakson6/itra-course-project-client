@@ -35,7 +35,9 @@ const CollectionFormLayout = ({
   handleChangeImageUrl,
 }: CollectionFormLayoutProps): JSX.Element => {
   const [tabValue, setTabValue] = useState<number>(0);
-  const [image, setImage] = useState<string>(imageUrl || defaultImage);
+  const [image, setImage] = useState<string>(
+    imageUrl || import.meta.env.VITE_DEFAULT_IMAGE
+  );
 
   const handleChangeTab = (event: SyntheticEvent, newValue: number) => {
     setTabValue(newValue);

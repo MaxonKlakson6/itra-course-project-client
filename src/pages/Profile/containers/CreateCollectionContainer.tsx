@@ -10,7 +10,6 @@ import { validateCollectionOptionalFields } from 'src/validation/validateCollect
 import { useAlertMessages } from 'src/hooks/useAlertMessages';
 import { CollectionMutationType } from 'src/pages/Profile/types/collectionMutationType';
 import { ERROR_MESSAGES } from 'src/constants/errorMessages';
-import defaultImage from 'src/static/images/default.jpg';
 
 const CreateCollectionContainer = () => {
   const { userId } = useParams();
@@ -31,7 +30,9 @@ const CreateCollectionContainer = () => {
       return;
     }
 
-    const imageUrl = image ? await loadImage(image) : defaultImage;
+    const imageUrl = image
+      ? await loadImage(image)
+      : import.meta.env.VITE_DEFAULT_IMAGE;
 
     const collection = {
       ...values,

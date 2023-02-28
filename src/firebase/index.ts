@@ -2,12 +2,12 @@ import { initializeApp } from 'firebase/app';
 import { getStorage } from 'firebase/storage';
 
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  apiKey: 'AIzaSyBBOJ7ocM4uBhO-RIXWRyaGO7SpkBT17gc',
+  authDomain: 'course-project-792f1.firebaseapp.com',
+  projectId: 'course-project-792f1',
+  storageBucket: 'course-project-792f1.appspot.com',
+  messagingSenderId: '877210675602',
+  appId: '1:877210675602:web:2ff33486f91c8ea4a7794b',
 };
 
 const app = initializeApp(firebaseConfig);
