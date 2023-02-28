@@ -3,14 +3,14 @@ import ReactDOM from 'react-dom/client';
 import { HashRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
+import { v4 } from 'uuid';
 
 import Router from 'src/router';
 import BaseLayout from 'src/components/BaseLayout';
 import { persistor, store } from 'src/store';
-
 import 'src/index.css';
 
-console.log(import.meta.env.MODE);
+console.log(`default-image-${v4()}`);
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <HashRouter>
