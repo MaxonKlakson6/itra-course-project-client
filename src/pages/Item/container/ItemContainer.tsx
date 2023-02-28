@@ -8,10 +8,12 @@ import { Item } from 'src/types/Item';
 import { useAlertMessages } from 'src/hooks/useAlertMessages';
 import { useAppSelector } from 'src/hooks/reduxHooks';
 import { authSelector } from 'src/store/selectors/authSelector';
+import { readOnlyModeSelector } from 'src/store/selectors/readOnlyModeSelector';
 
 const ItemContainer = () => {
-  const { userData } = useAppSelector(authSelector);
   const { collectionId, itemId } = useParams();
+  const { userData } = useAppSelector(authSelector);
+  const isReadOnly = useAppSelector(readOnlyModeSelector);
 
   const { data: collection, isLoading: isLoadingCollection } =
     useGetCollectionQuery(Number(collectionId));
@@ -33,7 +35,10 @@ const ItemContainer = () => {
 
   return (
     <ItemLayout
-      isReadOnly={collection?.UserId !== userData.id}
+      isReadOnly={
+        isReadOnly ||
+        (collection?.UserId !== userData.id && userData.role !== 'ADMIN')
+      }
       collection={collection as Collection}
       item={item as Item}
       handleDeleteItem={handleDeleteItem}

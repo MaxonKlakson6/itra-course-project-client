@@ -6,10 +6,12 @@ import { useGetAllCollectionItemsQuery } from 'src/api/itemApi';
 import { Collection } from 'src/types/collection';
 import { useAppSelector } from 'src/hooks/reduxHooks';
 import { authSelector } from 'src/store/selectors/authSelector';
+import { readOnlyModeSelector } from 'src/store/selectors/readOnlyModeSelector';
 
 const CollectionContainer = () => {
   const { id } = useParams();
   const { userData } = useAppSelector(authSelector);
+  const isReadOnly = useAppSelector(readOnlyModeSelector);
 
   const { data: collection, isLoading: isLoadingCollection } =
     useGetCollectionQuery(Number(id));
@@ -22,7 +24,10 @@ const CollectionContainer = () => {
 
   return (
     <CollectionLayout
-      isReadOnly={collection?.UserId !== userData.id}
+      isReadOnly={
+        isReadOnly ||
+        (collection?.UserId !== userData.id && userData.role !== 'ADMIN')
+      }
       collectionId={Number(id)}
       collection={collection as Collection}
       items={[...items]}

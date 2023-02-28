@@ -41,6 +41,7 @@ const ProfileLayout = ({
       {collections.map((collection) =>
         isReadOnly ? (
           <CollectionCard
+            key={collection.id}
             collectionId={collection.id}
             image={collection.image}
             title={collection.title}
