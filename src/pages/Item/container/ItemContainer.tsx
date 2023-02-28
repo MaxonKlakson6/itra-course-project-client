@@ -10,17 +10,25 @@ import { useAppSelector } from 'src/hooks/reduxHooks';
 import { authSelector } from 'src/store/selectors/authSelector';
 import { readOnlyModeSelector } from 'src/store/selectors/readOnlyModeSelector';
 import Loader from 'src/components/Loader';
+import ErrorHandler from 'src/components/ErrorHandler';
 
 const ItemContainer = () => {
   const { collectionId, itemId } = useParams();
   const { userData } = useAppSelector(authSelector);
   const isReadOnly = useAppSelector(readOnlyModeSelector);
 
-  const { data: collection, isLoading: isLoadingCollection } =
-    useGetCollectionQuery(Number(collectionId));
-  const { data: item, isLoading: isLoadingItem } = useGetItemQuery(
-    Number(itemId)
-  );
+  const {
+    data: collection,
+    isLoading: isLoadingCollection,
+    isError: isCollectionError,
+    error: collectionError = '',
+  } = useGetCollectionQuery(Number(collectionId));
+  const {
+    data: item,
+    isLoading: isLoadingItem,
+    isError: isItemError,
+    error: itemError = '',
+  } = useGetItemQuery(Number(itemId));
   const [deleteItem, { data: deleteMessage, error: deleteError }] =
     useDeleteItemMutation();
 
@@ -35,15 +43,20 @@ const ItemContainer = () => {
   }
 
   return (
-    <ItemLayout
-      isReadOnly={
-        isReadOnly ||
-        (collection?.UserId !== userData.id && userData.role !== 'ADMIN')
-      }
-      collection={collection as Collection}
-      item={item as Item}
-      handleDeleteItem={handleDeleteItem}
-    />
+    <ErrorHandler
+      isError={isCollectionError || isItemError}
+      errorMessage={`${collectionError} ${itemError}`}
+    >
+      <ItemLayout
+        isReadOnly={
+          isReadOnly ||
+          (collection?.UserId !== userData.id && userData.role !== 'ADMIN')
+        }
+        collection={collection as Collection}
+        item={item as Item}
+        handleDeleteItem={handleDeleteItem}
+      />
+    </ErrorHandler>
   );
 };
 

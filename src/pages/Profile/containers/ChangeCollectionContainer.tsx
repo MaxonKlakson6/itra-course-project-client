@@ -13,10 +13,16 @@ import { useAlertMessages } from 'src/hooks/useAlertMessages';
 import { CollectionMutationType } from 'src/pages/Profile/types/collectionMutationType';
 import { OptionalField } from 'src/types/collection';
 import Loader from 'src/components/Loader';
+import ErrorHandler from 'src/components/ErrorHandler';
 
 const ChangeCollectionContainer = () => {
   const { id } = useParams();
-  const { data, isLoading } = useGetCollectionQuery(Number(id));
+  const {
+    data,
+    isLoading,
+    isError: isCollectionError,
+    error: collectionError,
+  } = useGetCollectionQuery(Number(id));
   const [changeCollection, { error, isError, data: successMessage }] =
     useChangeCollectionMutation();
 
@@ -78,21 +84,26 @@ const ChangeCollectionContainer = () => {
   }
 
   return (
-    <CollectionFormLayout
-      formTitle='Change collection'
-      values={values}
-      imageUrl={data?.image}
-      errors={errors}
-      touched={touched}
-      handleBlur={handleBlur}
-      optionalFields={optionalFields}
-      handleChange={handleChange}
-      createNewField={createNewField}
-      handleChangeOptionalField={handleChangeOptionalField}
-      deleteOptionalField={deleteOptionalField}
-      handleCreateCollection={handleSubmit}
-      handleChangeImageUrl={handleChangeImageUrl}
-    />
+    <ErrorHandler
+      isError={isCollectionError}
+      errorMessage={collectionError as string}
+    >
+      <CollectionFormLayout
+        formTitle='Change collection'
+        values={values}
+        imageUrl={data?.image}
+        errors={errors}
+        touched={touched}
+        handleBlur={handleBlur}
+        optionalFields={optionalFields}
+        handleChange={handleChange}
+        createNewField={createNewField}
+        handleChangeOptionalField={handleChangeOptionalField}
+        deleteOptionalField={deleteOptionalField}
+        handleCreateCollection={handleSubmit}
+        handleChangeImageUrl={handleChangeImageUrl}
+      />
+    </ErrorHandler>
   );
 };
 

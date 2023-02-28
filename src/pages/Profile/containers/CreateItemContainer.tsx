@@ -12,15 +12,25 @@ import { validateItemTags } from 'src/validation/validateItemTags';
 import { validateItemOptionalFields } from 'src/validation/validateItemOptionalFields';
 import { ERROR_MESSAGES } from 'src/constants/errorMessages';
 import Loader from 'src/components/Loader';
+import ErrorHandler from 'src/components/ErrorHandler';
 
 const CreateItemContainer = () => {
   const { collectionId } = useParams();
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [createItem, { data, error }] = useCreateItemMutation();
 
-  const { data: allTags = [], isLoading: isLoadingTags } = useGetTagsQuery();
-  const { data: collection, isLoading: isLoadingCollection } =
-    useGetCollectionQuery(Number(collectionId));
+  const {
+    data: allTags = [],
+    isLoading: isLoadingTags,
+    isError: isTagsError,
+    error: tagsError = '',
+  } = useGetTagsQuery();
+  const {
+    data: collection,
+    isLoading: isLoadingCollection,
+    isError: isCollectionError,
+    error: collectionError = '',
+  } = useGetCollectionQuery(Number(collectionId));
 
   useAlertMessages(errorMessage, data as string);
 
@@ -65,22 +75,27 @@ const CreateItemContainer = () => {
   }
 
   return (
-    <ItemFormLayout
-      title='Create item'
-      values={form.values}
-      tags={allTags}
-      itemTags={form.itemTags}
-      optionalFields={form.optionalFields}
-      errors={form.errors}
-      touched={form.touched}
-      handleBlur={form.handleBlur}
-      handleChange={form.handleChange}
-      updateTagByOption={form.updateTagByOption}
-      handleAddTag={form.handleAddTag}
-      handleDeleteTag={form.handleDeleteTag}
-      handleChangeOptionalField={form.handleChangeOptionalField}
-      handleSubmit={form.handleSubmit}
-    />
+    <ErrorHandler
+      isError={isTagsError || isCollectionError}
+      errorMessage={`${tagsError} ${collectionError}`}
+    >
+      <ItemFormLayout
+        title='Create item'
+        values={form.values}
+        tags={allTags}
+        itemTags={form.itemTags}
+        optionalFields={form.optionalFields}
+        errors={form.errors}
+        touched={form.touched}
+        handleBlur={form.handleBlur}
+        handleChange={form.handleChange}
+        updateTagByOption={form.updateTagByOption}
+        handleAddTag={form.handleAddTag}
+        handleDeleteTag={form.handleDeleteTag}
+        handleChangeOptionalField={form.handleChangeOptionalField}
+        handleSubmit={form.handleSubmit}
+      />
+    </ErrorHandler>
   );
 };
 

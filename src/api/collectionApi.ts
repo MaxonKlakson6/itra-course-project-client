@@ -17,7 +17,10 @@ export const collectionApi = createApi({
       query: (id) => ({
         url: `user/collection/${id}`,
       }),
-      transformErrorResponse: (response: ErrorResponse) => response.data.error,
+      transformErrorResponse: (response: ErrorResponse) => {
+        console.log(response);
+        return response.data.error;
+      },
       providesTags: (result) =>
         result
           ? [

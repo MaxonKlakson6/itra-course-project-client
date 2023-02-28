@@ -7,12 +7,22 @@ import { useGetTagsQuery } from 'src/api/tagsApi';
 import { useAppDispatch } from 'src/hooks/reduxHooks';
 import { changeMode } from 'src/store/reducers/interactionModeSlice';
 import Loader from 'src/components/Loader';
+import ErrorHandler from 'src/components/ErrorHandler';
 
 const MainContainer = () => {
   const dispatch = useAppDispatch();
-  const { data: collections = [], isLoading: isLoadingCollections } =
-    useGetBiggestQuery();
-  const { data: items = [], isLoading: isLoadingItems } = useGetRecentQuery();
+  const {
+    data: collections = [],
+    isLoading: isLoadingCollections,
+    isError: isCollectionsError,
+    error: collectionsError = '',
+  } = useGetBiggestQuery();
+  const {
+    data: items = [],
+    isLoading: isLoadingItems,
+    isError: isItemsError,
+    error: itemsError = '',
+  } = useGetRecentQuery();
   const { data: tags = [] } = useGetTagsQuery();
   const [search, { data: searchedItems = [] }] = useLazySearchQuery();
 
@@ -43,16 +53,21 @@ const MainContainer = () => {
   }
 
   return (
-    <MainLayout
-      tags={tags}
-      searchText={searchText}
-      searchedItems={searchedItems}
-      collections={collections}
-      items={items}
-      handleSearchTextChange={handleSearchTextChange}
-      handleSearch={handleSearch}
-      handleSelectTag={handleSelectTag}
-    />
+    <ErrorHandler
+      isError={isCollectionsError || isItemsError}
+      errorMessage={`${collectionsError} ${itemsError}`}
+    >
+      <MainLayout
+        tags={tags}
+        searchText={searchText}
+        searchedItems={searchedItems}
+        collections={collections}
+        items={items}
+        handleSearchTextChange={handleSearchTextChange}
+        handleSearch={handleSearch}
+        handleSelectTag={handleSelectTag}
+      />
+    </ErrorHandler>
   );
 };
 

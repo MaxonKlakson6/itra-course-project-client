@@ -2,6 +2,7 @@ import { createApi } from '@reduxjs/toolkit/query/react';
 
 import { baseQueryWithCheckAuth } from 'src/api/baseQuery';
 import { User } from 'src/types/user';
+import { ErrorResponse } from 'src/types/errorResponse';
 
 export const adminApi = createApi({
   reducerPath: 'adminApi',
@@ -12,6 +13,7 @@ export const adminApi = createApi({
       query: () => ({
         url: 'admin/users',
       }),
+      transformErrorResponse: (response: ErrorResponse) => response.data.error,
       providesTags: (result) =>
         result
           ? [

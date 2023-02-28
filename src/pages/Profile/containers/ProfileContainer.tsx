@@ -12,18 +12,30 @@ import { useAlertMessages } from 'src/hooks/useAlertMessages';
 import { useGetUserQuery } from 'src/api/userApi';
 import { changeMode } from 'src/store/reducers/interactionModeSlice';
 import Loader from 'src/components/Loader';
+import ErrorHandler from 'src/components/ErrorHandler';
 
 const ProfileContainer = () => {
   const { ownerId } = useParams();
   const { userData } = useAppSelector(authSelector);
   const dispatch = useAppDispatch();
 
-  const { data: user, isLoading } = useGetUserQuery(Number(ownerId));
-  const { data = [] } = useGetUserCollectionsQuery(Number(ownerId));
-  const [deleteCollection, { data: deleteMessage, error }] =
-    useDeleteCollectionMutation();
+  const {
+    data: user,
+    isLoading,
+    isError: isUserError,
+    error: userError = '',
+  } = useGetUserQuery(Number(ownerId));
+  const {
+    data = [],
+    isError: isCollectionsError,
+    error: collectionsError = '',
+  } = useGetUserCollectionsQuery(Number(ownerId));
+  const [
+    deleteCollection,
+    { data: deleteMessage, error: deleteCollectionError },
+  ] = useDeleteCollectionMutation();
 
-  useAlertMessages(error as string, deleteMessage as string);
+  useAlertMessages(deleteCollectionError as string, deleteMessage as string);
 
   const handleDeleteCollection = (id: number) => {
     deleteCollection(id);
@@ -38,13 +50,20 @@ const ProfileContainer = () => {
   }
 
   return (
-    <ProfileLayout
-      userId={Number(ownerId)}
-      isReadOnly={Number(ownerId) !== userData.id && userData.role !== 'ADMIN'}
-      userName={user?.name as string}
-      collections={data}
-      handleDeleteCollection={handleDeleteCollection}
-    />
+    <ErrorHandler
+      isError={isUserError || isCollectionsError}
+      errorMessage={`${userError} ${collectionsError}`}
+    >
+      <ProfileLayout
+        userId={Number(ownerId)}
+        isReadOnly={
+          Number(ownerId) !== userData.id && userData.role !== 'ADMIN'
+        }
+        userName={user?.name as string}
+        collections={data}
+        handleDeleteCollection={handleDeleteCollection}
+      />
+    </ErrorHandler>
   );
 };
 

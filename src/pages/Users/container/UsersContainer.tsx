@@ -6,9 +6,10 @@ import {
 } from 'src/api/adminApi';
 import UsersLayout from 'src/pages/Users/components/UsersLayout';
 import Loader from 'src/components/Loader';
+import ErrorHandler from 'src/components/ErrorHandler';
 
 const UsersContainer = () => {
-  const { data: users = [], isLoading } = useGetUsersQuery();
+  const { data: users = [], isLoading, isError, error } = useGetUsersQuery();
 
   const [deleteUser] = useDeleteUserMutation();
   const [toggleBlock] = useToggleBlockUserMutation();
@@ -30,12 +31,14 @@ const UsersContainer = () => {
   }
 
   return (
-    <UsersLayout
-      users={users}
-      handleDelete={handleDelete}
-      handleToggleBlock={handleToggleBlock}
-      handleMakeAdmin={handleMakeAdmin}
-    />
+    <ErrorHandler isError={isError} errorMessage={error as string}>
+      <UsersLayout
+        users={users}
+        handleDelete={handleDelete}
+        handleToggleBlock={handleToggleBlock}
+        handleMakeAdmin={handleMakeAdmin}
+      />
+    </ErrorHandler>
   );
 };
 
