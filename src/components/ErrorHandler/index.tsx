@@ -11,17 +11,10 @@ const ErrorHandler = ({
   isError,
   errorMessage,
   children,
-}: ErrorHandlerProps) => {
-  console.log(errorMessage);
-  return (
-    <div>
-      {isError ? (
-        <Typography variant='h4'>{errorMessage}</Typography>
-      ) : (
-        children
-      )}
-    </div>
-  );
-};
+}: ErrorHandlerProps) => (
+  <div>
+    {isError ? <Typography variant='h4'>{errorMessage}</Typography> : children}
+  </div>
+);
 
 export default ErrorHandler;

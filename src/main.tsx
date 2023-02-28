@@ -10,6 +10,8 @@ import { persistor, store } from 'src/store';
 
 import 'src/index.css';
 
+console.log(import.meta.env.MODE);
+
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <HashRouter>
     <Provider store={store}>

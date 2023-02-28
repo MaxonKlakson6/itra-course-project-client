@@ -10,7 +10,7 @@ import { resetAuthState } from 'src/store/reducers/authSlice';
 import type { RootState } from 'src/types/reduxTypes';
 
 export const baseQuery = fetchBaseQuery({
-  baseUrl: 'https://itra-course-project-server-production.up.railway.app',
+  baseUrl: import.meta.env.VITE_SERVER_URL,
   mode: 'cors',
   credentials: 'same-origin',
   prepareHeaders: (headers, { getState }) => {
