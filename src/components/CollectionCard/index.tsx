@@ -31,7 +31,7 @@ const CollectionCard = ({
 
   return (
     <Card
-      sx={{ width: 300, cursor: 'pointer' }}
+      sx={{ width: 300, cursor: 'pointer', height: 400 }}
       className={className}
       onClick={handleNavigateToItems}
     >
