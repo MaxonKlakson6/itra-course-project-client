@@ -25,7 +25,6 @@ const BaseLayout = ({ children }: BaseLayoutProps): JSX.Element => {
         <Main>
           <ContentWrapper>{children}</ContentWrapper>
         </Main>
-        <footer>Footer</footer>
       </Wrapper>
       {type === 'error' && (
         <SnackBar
