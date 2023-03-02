@@ -1,5 +1,6 @@
 import { useParams } from 'react-router';
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import ItemFormLayout from 'src/pages/Profile/components/ItemFormLayout';
 import { useGetTagsQuery } from 'src/api/tagsApi';
@@ -10,7 +11,6 @@ import { useItem } from 'src/hooks/useItem';
 import { CreateItemRequest } from 'src/pages/Profile/types/createItemRequest';
 import { validateItemTags } from 'src/validation/validateItemTags';
 import { validateItemOptionalFields } from 'src/validation/validateItemOptionalFields';
-import { ERROR_MESSAGES } from 'src/constants/errorMessages';
 import Loader from 'src/components/Loader';
 import ErrorHandler from 'src/components/ErrorHandler';
 
@@ -18,6 +18,7 @@ const CreateItemContainer = () => {
   const { collectionId } = useParams();
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [createItem, { data, error }] = useCreateItemMutation();
+  const { t } = useTranslation();
 
   const {
     data: allTags = [],
@@ -40,11 +41,11 @@ const CreateItemContainer = () => {
     optionalFields,
   }: Omit<CreateItemRequest, 'collectionId'>) => {
     if (!validateItemTags(tags)) {
-      setErrorMessage(ERROR_MESSAGES.TAGS);
+      setErrorMessage(t('itemForm.tagsError') as string);
       return;
     }
     if (!validateItemOptionalFields(optionalFields)) {
-      setErrorMessage(ERROR_MESSAGES.ITEM_OPTIONAL_FIELDS);
+      setErrorMessage(t('itemForm.optionalFieldError') as string);
       return;
     }
     createItem({
@@ -80,7 +81,7 @@ const CreateItemContainer = () => {
       errorMessage={`${tagsError} ${collectionError}`}
     >
       <ItemFormLayout
-        title='Create item'
+        title={t('itemForm.createItemTitle')}
         values={form.values}
         tags={allTags}
         itemTags={form.itemTags}

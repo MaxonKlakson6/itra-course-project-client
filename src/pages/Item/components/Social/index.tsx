@@ -2,6 +2,7 @@ import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { io } from 'socket.io-client';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import { useTranslation } from 'react-i18next';
 
 import { useAppSelector } from 'src/hooks/reduxHooks';
 import { authSelector } from 'src/store/selectors/authSelector';
@@ -29,6 +30,8 @@ const Social = ({ itemId, comments, likes }: SocialProps) => {
   const [comment, setComment] = useState<string>('');
   const [allComments, setAllComments] = useState<Comment[]>([...comments]);
   const [allLikes, setAllLikes] = useState<number[]>(likes);
+
+  const { t } = useTranslation();
 
   const wsServer = io(import.meta.env.VITE_SERVER_URL);
 
@@ -72,11 +75,11 @@ const Social = ({ itemId, comments, likes }: SocialProps) => {
     <SocialBlock>
       <CommentForm onSubmit={handleAddComment}>
         <CommentField
-          placeholder='Comment'
+          placeholder={t('item.commentPlaceholder') as string}
           value={comment}
           onChange={handleChangeComment}
         />
-        <SubmitButton type='submit'>Add comment</SubmitButton>
+        <SubmitButton type='submit'>{t('item.addComment')}</SubmitButton>
       </CommentForm>
       <LikeButton onClick={handleLike}>
         {allLikes.includes(userData.id) ? (

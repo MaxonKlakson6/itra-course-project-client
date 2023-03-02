@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import {
   CollectionsHolder,
@@ -25,43 +26,47 @@ const ProfileLayout = ({
   userName,
   collections,
   handleDeleteCollection,
-}: ProfileLayoutProps): JSX.Element => (
-  <>
-    <Heading>
-      <NameTitle>{userName}</NameTitle>
-      {!isReadOnly && (
-        <CreateButton variant='contained'>
-          <Link to={`${ROUTES_WITH_ID.CREATE_COLLECTION}/${userId}`}>
-            Create collection
-          </Link>
-        </CreateButton>
-      )}
-    </Heading>
-    <CollectionsHolder>
-      {collections.map((collection) =>
-        isReadOnly ? (
-          <CollectionCard
-            key={collection.id}
-            collectionId={collection.id}
-            image={collection.image}
-            title={collection.title}
-            subject={collection.subject}
-            description={collection.description}
-          />
-        ) : (
-          <CollectionManager
-            key={collection.id}
-            image={collection.image}
-            title={collection.title}
-            subject={collection.subject}
-            description={collection.description}
-            collectionId={collection.id}
-            handleDeleteCollection={handleDeleteCollection}
-          />
-        )
-      )}
-    </CollectionsHolder>
-  </>
-);
+}: ProfileLayoutProps): JSX.Element => {
+  const { t } = useTranslation();
+
+  return (
+    <>
+      <Heading>
+        <NameTitle>{userName}</NameTitle>
+        {!isReadOnly && (
+          <CreateButton variant='contained'>
+            <Link to={`${ROUTES_WITH_ID.CREATE_COLLECTION}/${userId}`}>
+              {t('profile.createButton')}
+            </Link>
+          </CreateButton>
+        )}
+      </Heading>
+      <CollectionsHolder>
+        {collections.map((collection) =>
+          isReadOnly ? (
+            <CollectionCard
+              key={collection.id}
+              collectionId={collection.id}
+              image={collection.image}
+              title={collection.title}
+              subject={collection.subject}
+              description={collection.description}
+            />
+          ) : (
+            <CollectionManager
+              key={collection.id}
+              image={collection.image}
+              title={collection.title}
+              subject={collection.subject}
+              description={collection.description}
+              collectionId={collection.id}
+              handleDeleteCollection={handleDeleteCollection}
+            />
+          )
+        )}
+      </CollectionsHolder>
+    </>
+  );
+};
 
 export default ProfileLayout;

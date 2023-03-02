@@ -1,4 +1,5 @@
 import ClearIcon from '@mui/icons-material/Clear';
+import { useTranslation } from 'react-i18next';
 
 import InputWithError from 'src/components/InputWithError';
 import InputWithHints from 'src/components/InputWithHints';
@@ -25,50 +26,54 @@ const ItemForm = ({
   handleDeleteTag,
   handleChangeOptionalField,
   handleSubmit,
-}: ItemFormProps) => (
-  <Form onSubmit={handleSubmit}>
-    <InputWithError
-      placeholder='title'
-      inputType='text'
-      inputValue={values.title}
-      name='title'
-      errorText={errors.title}
-      isTouched={touched.title}
-      onChange={handleChange}
-      handleBlur={handleBlur}
-    />
-    <TagsHolder>
-      {itemTags.map((tag) => (
-        <Tag
-          key={tag}
-          label={tag}
-          color='success'
-          onDelete={() => handleDeleteTag(tag)}
-          deleteIcon={<ClearIcon />}
+}: ItemFormProps) => {
+  const { t } = useTranslation();
+
+  return (
+    <Form onSubmit={handleSubmit}>
+      <InputWithError
+        placeholder={t('itemForm.titlePlaceholder')}
+        inputType='text'
+        inputValue={values.title}
+        name='title'
+        errorText={errors.title}
+        isTouched={touched.title}
+        onChange={handleChange}
+        handleBlur={handleBlur}
+      />
+      <TagsHolder>
+        {itemTags.map((tag) => (
+          <Tag
+            key={tag}
+            label={tag}
+            color='success'
+            onDelete={() => handleDeleteTag(tag)}
+            deleteIcon={<ClearIcon />}
+          />
+        ))}
+      </TagsHolder>
+      <InputWithHints
+        id='tags-input'
+        name='tag'
+        label={t('itemForm.tagLabel')}
+        value={values.tag}
+        hints={tags}
+        handleChange={handleChange}
+        updateValueByOption={updateTagByOption}
+      />
+      <AddTagButton variant='contained' type='button' onClick={handleAddTag}>
+        {t('itemForm.addTag')}
+      </AddTagButton>
+      {optionalFields.map((optionalField) => (
+        <ItemOptionalFieldInput
+          key={optionalField.id}
+          optionalField={optionalField}
+          handleChangeField={handleChangeOptionalField}
         />
       ))}
-    </TagsHolder>
-    <InputWithHints
-      id='tags-input'
-      name='tag'
-      label='Tag'
-      value={values.tag}
-      hints={tags}
-      handleChange={handleChange}
-      updateValueByOption={updateTagByOption}
-    />
-    <AddTagButton variant='contained' type='button' onClick={handleAddTag}>
-      Add tag
-    </AddTagButton>
-    {optionalFields.map((optionalField) => (
-      <ItemOptionalFieldInput
-        key={optionalField.id}
-        optionalField={optionalField}
-        handleChangeField={handleChangeOptionalField}
-      />
-    ))}
-    <SubmitButton type='submit'>Submit</SubmitButton>
-  </Form>
-);
+      <SubmitButton type='submit'>{t('submit')}</SubmitButton>
+    </Form>
+  );
+};
 
 export default ItemForm;

@@ -1,5 +1,6 @@
 import { useParams } from 'react-router';
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { useChangeItemMutation, useGetItemQuery } from 'src/api/itemApi';
 import { useGetCollectionQuery } from 'src/api/collectionApi';
@@ -10,7 +11,6 @@ import { useGetTagsQuery } from 'src/api/tagsApi';
 import { UpdateItemRequest } from 'src/pages/Profile/types/updateItemRequest';
 import { useAlertMessages } from 'src/hooks/useAlertMessages';
 import { validateItemTags } from 'src/validation/validateItemTags';
-import { ERROR_MESSAGES } from 'src/constants/errorMessages';
 import { validateItemOptionalFields } from 'src/validation/validateItemOptionalFields';
 import Loader from 'src/components/Loader';
 import ErrorHandler from 'src/components/ErrorHandler';
@@ -19,6 +19,7 @@ const ChangeItemContainer = () => {
   const { itemId, collectionId } = useParams();
   const [optional, setOptional] = useState<OptionalField[]>([]);
   const [errorMessage, setErrorMessage] = useState<string>('');
+  const { t } = useTranslation();
 
   const {
     data: allTags = [],
@@ -44,11 +45,11 @@ const ChangeItemContainer = () => {
 
   const submit = (updatedItem: Omit<UpdateItemRequest, 'id'>) => {
     if (!validateItemTags(updatedItem.tags)) {
-      setErrorMessage(ERROR_MESSAGES.TAGS);
+      setErrorMessage(t('itemForm.tagsError') as string);
       return;
     }
     if (!validateItemOptionalFields(updatedItem.optionalFields)) {
-      setErrorMessage(ERROR_MESSAGES.ITEM_OPTIONAL_FIELDS);
+      setErrorMessage(t('itemForm.optionalFieldError') as string);
       return;
     }
     changeItem({
@@ -97,7 +98,7 @@ const ChangeItemContainer = () => {
       errorMessage={`${tagsError} ${itemError} ${collectionError}`}
     >
       <ItemFormLayout
-        title='Update item'
+        title={t('itemForm.updateItemTitle')}
         tags={allTags}
         itemTags={form.itemTags}
         values={form.values}

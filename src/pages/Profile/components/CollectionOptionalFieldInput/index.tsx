@@ -1,5 +1,6 @@
 import { ChangeEvent } from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { useTranslation } from 'react-i18next';
 
 import {
   DeleteButton,
@@ -21,20 +22,24 @@ const CollectionOptionalFieldInput = ({
   label,
   handleChange,
   deleteOptionalField,
-}: CollectionOptionalFieldInputProps): JSX.Element => (
-  <Wrapper>
-    <InputField
-      fullWidth
-      placeholder='Label'
-      value={label}
-      name={id}
-      variant='standard'
-      onChange={handleChange}
-    />
-    <DeleteButton type='button' onClick={() => deleteOptionalField(index)}>
-      <DeleteIcon />
-    </DeleteButton>
-  </Wrapper>
-);
+}: CollectionOptionalFieldInputProps): JSX.Element => {
+  const { t } = useTranslation();
+
+  return (
+    <Wrapper>
+      <InputField
+        fullWidth
+        placeholder={t('createCollectionPage.optionalFieldName') as string}
+        value={label}
+        name={id}
+        variant='standard'
+        onChange={handleChange}
+      />
+      <DeleteButton type='button' onClick={() => deleteOptionalField(index)}>
+        <DeleteIcon />
+      </DeleteButton>
+    </Wrapper>
+  );
+};
 
 export default CollectionOptionalFieldInput;

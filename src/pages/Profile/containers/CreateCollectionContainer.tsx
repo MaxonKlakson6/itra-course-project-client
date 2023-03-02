@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
+import { useTranslation } from 'react-i18next';
 
 import CollectionFormLayout from 'src/pages/Profile/components/CollectionFormLayout';
 import { subjectDefaultValue } from 'src/constants/subjects';
@@ -9,13 +10,13 @@ import { useCollection } from 'src/hooks/useCollection';
 import { validateCollectionOptionalFields } from 'src/validation/validateCollectionOptionalFields';
 import { useAlertMessages } from 'src/hooks/useAlertMessages';
 import { CollectionMutationType } from 'src/pages/Profile/types/collectionMutationType';
-import { ERROR_MESSAGES } from 'src/constants/errorMessages';
 
 const CreateCollectionContainer = () => {
   const { userId } = useParams();
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [createCollection, { data, error, isError }] =
     useCreateCollectionMutation();
+  const { t } = useTranslation();
 
   useAlertMessages(errorMessage, data as string);
   const submit = async ({
@@ -26,7 +27,9 @@ const CreateCollectionContainer = () => {
     const isValid = validateCollectionOptionalFields(optionalFields);
 
     if (!isValid) {
-      setErrorMessage(ERROR_MESSAGES.COLLECTION_OPTIONAL_FIELDS);
+      setErrorMessage(
+        t('createCollectionPage.optionalFieldsRequired') as string
+      );
       return;
     }
 
@@ -73,7 +76,7 @@ const CreateCollectionContainer = () => {
 
   return (
     <CollectionFormLayout
-      formTitle='Create new collection'
+      formTitle={t('createCollectionPage.createCollection')}
       values={values}
       errors={errors}
       touched={touched}

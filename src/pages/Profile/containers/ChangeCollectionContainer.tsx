@@ -1,5 +1,6 @@
 import { useParams } from 'react-router';
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import CollectionFormLayout from 'src/pages/Profile/components/CollectionFormLayout';
 import {
@@ -25,6 +26,7 @@ const ChangeCollectionContainer = () => {
   } = useGetCollectionQuery(Number(id));
   const [changeCollection, { error, isError, data: successMessage }] =
     useChangeCollectionMutation();
+  const { t } = useTranslation();
 
   const [errorMessage, setErrorMessage] = useState<string>('');
 
@@ -38,6 +40,9 @@ const ChangeCollectionContainer = () => {
     const isValid = validateCollectionOptionalFields(optionalFields);
 
     if (!isValid) {
+      setErrorMessage(
+        t('createCollectionPage.optionalFieldsRequired') as string
+      );
       return;
     }
     const imageUrl = image ? await loadImage(image) : (data?.image as string);
@@ -89,7 +94,7 @@ const ChangeCollectionContainer = () => {
       errorMessage={collectionError as string}
     >
       <CollectionFormLayout
-        formTitle='Change collection'
+        formTitle={t('createCollectionPage.updateCollection')}
         values={values}
         imageUrl={data?.image}
         errors={errors}

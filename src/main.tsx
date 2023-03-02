@@ -7,8 +7,9 @@ import { PersistGate } from 'redux-persist/integration/react';
 import Router from 'src/router';
 import BaseLayout from 'src/components/BaseLayout';
 import { persistor, store } from 'src/store';
-import 'src/index.css';
 import ErrorBoundary from 'src/components/ErrorBoundary';
+import 'src/localization/localization';
+import 'src/index.css';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <HashRouter>

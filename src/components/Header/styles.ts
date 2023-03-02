@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
-import { Tab, Tabs } from '@mui/material';
-import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
+import { Tab } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 import { COLORS } from 'src/static/colors';
+import Dropdown from 'src/components/Dropdown';
 
 export const Wrapper = styled.header`
   height: 50px;
@@ -33,6 +33,21 @@ export const PageLink = styled(Link)`
   color: #fff;
 `;
 
-export const WhiteTab = styled(Tab)`
-  color: #fff;
+export const LanguageSelect = styled(Dropdown)`
+  background-color: #fff;
+  border-radius: 4px;
+
+  & button {
+    background-color: #fff;
+    color: ${COLORS.GREEN};
+  }
+
+  &:hover {
+    background-color: ${COLORS.GREEN};
+  }
+
+  & button:hover {
+    background-color: ${COLORS.GREEN};
+    color: #fff;
+  }
 `;

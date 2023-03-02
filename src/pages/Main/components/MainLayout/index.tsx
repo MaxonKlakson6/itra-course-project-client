@@ -1,4 +1,5 @@
 import { ChangeEvent, FormEvent } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { Collection } from 'src/types/collection';
 import { Item } from 'src/types/Item';
@@ -37,63 +38,67 @@ const MainLayout = ({
   handleSearchTextChange,
   handleSearch,
   handleSelectTag,
-}: MainLayoutProps) => (
-  <Wrapper>
-    <SearchForm
-      searchText={searchText}
-      handleSearchTextChange={handleSearchTextChange}
-      handleSubmit={handleSearch}
-    />
-    <SearchLinksHolder>
-      {searchedItems.map((searchedItem) => (
-        <ItemLink
-          key={`Search-${searchedItem.id}`}
-          to={`${ROUTES_WITH_ID.ITEM}/${searchedItem.CollectionId}/${searchedItem.id}`}
-          style={{ marginRight: '20px' }}
-        >
-          {searchedItem.title}
-        </ItemLink>
-      ))}
-    </SearchLinksHolder>
-    <Cloud
-      tags={tags.map((tag) => ({
-        value: tag,
-        count: 10,
-      }))}
-      maxSize={35}
-      minSize={10}
-      onClick={handleSelectTag}
-    />
-    <div>
-      <Title>Biggest collections</Title>
-      <CollectionsHolder>
-        {collections.map((collection) => (
-          <CollectionCard
-            key={`Collection-${collection.id}`}
-            collectionId={collection.id}
-            image={collection.image}
-            title={collection.title}
-            subject={collection.subject}
-            description={collection.description}
-          />
-        ))}
-      </CollectionsHolder>
-    </div>
-    <div>
-      <Title>Recent created items</Title>
-      <ItemsHolder>
-        {items.map((item) => (
+}: MainLayoutProps) => {
+  const { t } = useTranslation();
+
+  return (
+    <Wrapper>
+      <SearchForm
+        searchText={searchText}
+        handleSearchTextChange={handleSearchTextChange}
+        handleSubmit={handleSearch}
+      />
+      <SearchLinksHolder>
+        {searchedItems.map((searchedItem) => (
           <ItemLink
-            key={`Item-${item.id}`}
-            to={`${ROUTES_WITH_ID.ITEM}/${item.CollectionId}/${item.id}`}
+            key={`Search-${searchedItem.id}`}
+            to={`${ROUTES_WITH_ID.ITEM}/${searchedItem.CollectionId}/${searchedItem.id}`}
             style={{ marginRight: '20px' }}
           >
-            {item.title}
+            {searchedItem.title}
           </ItemLink>
         ))}
-      </ItemsHolder>
-    </div>
-  </Wrapper>
-);
+      </SearchLinksHolder>
+      <Cloud
+        tags={tags.map((tag) => ({
+          value: tag,
+          count: 10,
+        }))}
+        maxSize={35}
+        minSize={10}
+        onClick={handleSelectTag}
+      />
+      <div>
+        <Title>{t('mainPage.collectionsTitle')}</Title>
+        <CollectionsHolder>
+          {collections.map((collection) => (
+            <CollectionCard
+              key={`Collection-${collection.id}`}
+              collectionId={collection.id}
+              image={collection.image}
+              title={collection.title}
+              subject={collection.subject}
+              description={collection.description}
+            />
+          ))}
+        </CollectionsHolder>
+      </div>
+      <div>
+        <Title>{t('mainPage.recentItems')}</Title>
+        <ItemsHolder>
+          {items.map((item) => (
+            <ItemLink
+              key={`Item-${item.id}`}
+              to={`${ROUTES_WITH_ID.ITEM}/${item.CollectionId}/${item.id}`}
+              style={{ marginRight: '20px' }}
+            >
+              {item.title}
+            </ItemLink>
+          ))}
+        </ItemsHolder>
+      </div>
+    </Wrapper>
+  );
+};
 
 export default MainLayout;

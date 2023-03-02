@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import { CreateButton, Heading } from 'src/static/styles/profileStyles';
 import { Item } from 'src/types/Item';
@@ -19,25 +20,28 @@ const CollectionLayout = ({
   collectionId,
   items,
   collection,
-}: ItemsLayoutProps) => (
-  <div>
-    <Heading>
-      {!isReadOnly && (
-        <CreateButton>
-          <Link to={`${ROUTES_WITH_ID.CREATE_ITEM}/${collectionId}`}>
-            Create Item
-          </Link>
-        </CreateButton>
-      )}
-    </Heading>
-    <ContentBlock>
-      {items.length === 0 ? (
-        'No one item'
-      ) : (
-        <ItemsTable items={items} collection={collection} />
-      )}
-    </ContentBlock>
-  </div>
-);
+}: ItemsLayoutProps) => {
+  const { t } = useTranslation();
+  return (
+    <div>
+      <Heading>
+        {!isReadOnly && (
+          <CreateButton>
+            <Link to={`${ROUTES_WITH_ID.CREATE_ITEM}/${collectionId}`}>
+              {t('collection.createItem')}
+            </Link>
+          </CreateButton>
+        )}
+      </Heading>
+      <ContentBlock>
+        {items.length === 0 ? (
+          t('collection.noItems')
+        ) : (
+          <ItemsTable items={items} collection={collection} />
+        )}
+      </ContentBlock>
+    </div>
+  );
+};
 
 export default CollectionLayout;

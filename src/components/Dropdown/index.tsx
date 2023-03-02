@@ -1,5 +1,6 @@
 import { Button, Menu, MenuItem } from '@mui/material';
 import { MouseEvent, ReactNode, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface DropdownProps {
   id: string;
@@ -20,6 +21,7 @@ const Dropdown = ({
 }: DropdownProps) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
+  const { t } = useTranslation();
   const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -54,7 +56,7 @@ const Dropdown = ({
       >
         {menuItems.map((menuItem, index) => (
           <MenuItem key={menuItem} onClick={() => handleClose(index)}>
-            {menuItem}
+            {t(menuItem)}
           </MenuItem>
         ))}
       </Menu>

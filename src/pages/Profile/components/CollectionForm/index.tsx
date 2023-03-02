@@ -1,4 +1,5 @@
 import { FormControl } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 import {
   AddButton,
@@ -36,6 +37,8 @@ const CollectionForm = ({
   handleCreateCollection,
   handleChangeImageUrl,
 }: CollectionFormProps): JSX.Element => {
+  const { t } = useTranslation();
+
   const saveType = (chosenType: string) => {
     createNewField(chosenType as OptionalFieldTypes);
   };
@@ -48,7 +51,7 @@ const CollectionForm = ({
         handleChangeImageUrl={handleChangeImageUrl}
       />
       <InputWithError
-        placeholder='Collection title'
+        placeholder={t('createCollectionPage.titlePlaceholder')}
         inputType='text'
         inputValue={values.title}
         name='title'
@@ -60,7 +63,7 @@ const CollectionForm = ({
       <Select
         options={subjects}
         labelId='subject-label'
-        label='Subject'
+        label={t('createCollectionPage.subjectLabel')}
         value={values.subject}
         name='subject'
         handleChange={handleChange}
@@ -68,7 +71,9 @@ const CollectionForm = ({
       <FormControl>
         <DescriptionField
           rows={5}
-          placeholder='Description'
+          placeholder={
+            t('createCollectionPage.descriptionPlaceholder') as string
+          }
           value={values.description}
           name='description'
           onChange={handleChange}
@@ -91,10 +96,10 @@ const CollectionForm = ({
         menuItems={optionalFieldsTypes}
         saveValue={saveType}
       >
-        Add field
+        {t('createCollectionPage.addField')}
       </AddButton>
       <SubmitButton type='submit' variant='contained'>
-        Submit
+        {t('submit')}
       </SubmitButton>
     </Form>
   );

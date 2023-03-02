@@ -1,5 +1,6 @@
 import { Tab } from '@mui/material';
 import { SyntheticEvent, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import {
   FormTabs,
@@ -37,6 +38,7 @@ const CollectionFormLayout = ({
   const [image, setImage] = useState<string>(
     imageUrl || import.meta.env.VITE_DEFAULT_IMAGE
   );
+  const { t } = useTranslation();
 
   const handleChangeTab = (event: SyntheticEvent, newValue: number) => {
     setTabValue(newValue);
@@ -53,8 +55,8 @@ const CollectionFormLayout = ({
         <CloseButton />
       </Heading>
       <FormTabs value={tabValue} onChange={handleChangeTab}>
-        <Tab label='Form' />
-        <Tab label='Preview' />
+        <Tab label={t('createCollectionPage.tabFormLabel')} />
+        <Tab label={t('createCollectionPage.tabPreviewLabel')} />
       </FormTabs>
       <TabPanel index={0} value={tabValue}>
         <CollectionForm
