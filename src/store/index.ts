@@ -44,5 +44,5 @@ export const store = configureStore({
     ),
   devTools: import.meta.env.MODE !== 'production',
 });
-console.log(import.meta.env.MODE);
+
 export const persistor = persistStore(store);

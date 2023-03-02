@@ -32,7 +32,7 @@ export const baseQueryWithCheckAuth: BaseQueryFn<
 > = async (args, api, extraOptions) => {
   const result = await baseQuery(args, api, extraOptions);
   if (result.error && result.error.status === 401) {
-    localStorage.clear();
+    localStorage.removeItem('persist:auth');
     api.dispatch(resetAuthState());
   }
   return result;
