@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { HashRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 
@@ -12,7 +12,7 @@ import 'src/localization/localization';
 import 'src/index.css';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <HashRouter>
+  <BrowserRouter>
     <Provider store={store}>
       <PersistGate persistor={persistor}>
         <ErrorBoundary>
@@ -22,5 +22,5 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         </ErrorBoundary>
       </PersistGate>
     </Provider>
-  </HashRouter>
+  </BrowserRouter>
 );
